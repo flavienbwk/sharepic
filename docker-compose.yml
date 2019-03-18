@@ -1,0 +1,55 @@
+version: "3"
+services:
+  #PHP Service
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: php:7.2-fpm
+    container_name: sharepic_api
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "9000:9000"
+    volumes:
+      - ./api:/var/www/api.sharepic.net
+    networks:
+      - sharepic-network
+
+  #Nginx Service
+  nginx:
+    image: nginx:alpine
+    container_name: sharepic_nginx
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./app:/var/www/api.sharepic.net
+      - ./sharepic.nginx.conf:/etc/nginx/conf.d/sharepic.nginx.conf
+    networks:
+      - sharepic-network
+
+  #MySQL Service
+  database:
+    image: mysql:5.7.22
+    container_name: sharepic_database
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_DATABASE: sharepic
+      MYSQL_ROOT_PASSWORD: sharepic_root_password
+      MYSQL_USER: sharepic_user
+      MYSQL_PASSWORD: sharepic_password
+    volumes:
+      - database:/var/lib/mysql
+    networks:
+      - sharepic-network
+
+#Docker Networks
+networks:
+  sharepic-network:
+    driver: bridge
