@@ -20,14 +20,14 @@ For all routes expect the `Authentication` one, the queries must contain in thei
 
 ## Register
 
-## Authentication
-
 ### Query
 
-| Endpoint | `/auth` | Description |
+| Endpoint | `/auth/register` | Description |
 |----------|-------------|-------------|
-| username | _string_ ||
+| email | _string_ ||
 | password | _string_ ||
+| first_name | _string_ | Optional |
+| last_name | _string_ | Optional |
 
 ### Response
 
@@ -35,6 +35,30 @@ For all routes expect the `Authentication` one, the queries must contain in thei
 |----------|-------------|-------------|
 | token | _string_ ||
 | expires_at | _datetime_ ||
+| ids | _string_ ||
+| first_name | _string_ ||
+| last_name | _string_ ||
+| email | _string_ ||
+
+## Authentication
+
+### Query
+
+| Endpoint | `/auth/login` | Description |
+|----------|-------------|-------------|
+| username | _string_ ||
+| email | _string_ ||
+| password | _string_ ||
+| first_name | _string_ ||
+| last_name | _string_ ||
+
+### Response
+
+| Key name | Value type | Description |
+|----------|-------------|-------------|
+| token | _string_ ||
+| expires_at | _datetime_ ||
+| ids | _string_ ||
 | first_name | _string_ ||
 | last_name | _string_ ||
 | email | _string_ ||

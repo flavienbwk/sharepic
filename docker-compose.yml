@@ -13,6 +13,7 @@ services:
       - "9000:9000"
     volumes:
       - ./api:/var/www/api.sharepic.net
+      - ./php/local.ini:/usr/local/etc/php/conf.d/local.ini
     networks:
       - sharepic-network
 
@@ -45,7 +46,8 @@ services:
       MYSQL_USER: sharepic_user
       MYSQL_PASSWORD: sharepic_password
     volumes:
-      - database:/var/lib/mysql
+      - ./database:/var/lib/mysql
+      - ./mysql/my.cnf:/etc/mysql/my.cnf
     networks:
       - sharepic-network
 
