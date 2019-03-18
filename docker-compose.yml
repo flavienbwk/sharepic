@@ -3,9 +3,8 @@ services:
   #PHP Service
   api:
     build:
-      context: .
+      context: ./api
       dockerfile: Dockerfile
-    image: php:7.2-fpm
     container_name: sharepic_api
     restart: unless-stopped
     tty: true
@@ -13,13 +12,15 @@ services:
       - "9000:9000"
     volumes:
       - ./api:/var/www/api.sharepic.net
-      - ./php/local.ini:/usr/local/etc/php/conf.d/local.ini
+      - ./api/php.local.ini:/usr/local/etc/php/conf.d/local.ini
     networks:
       - sharepic-network
 
   #Nginx Service
   nginx:
-    image: nginx:alpine
+    build:
+      context: ./api
+      dockerfile: Dockerfile_nginx
     container_name: sharepic_nginx
     restart: unless-stopped
     tty: true
@@ -27,8 +28,8 @@ services:
       - "80:80"
       - "443:443"
     volumes:
-      - ./app:/var/www/api.sharepic.net
-      - ./sharepic.nginx.conf:/etc/nginx/conf.d/sharepic.nginx.conf
+      - ./api:/var/www/api.sharepic.net
+      - ./api/sharepic.nginx.conf:/etc/nginx/conf.d/sharepic.nginx.conf
     networks:
       - sharepic-network
 
@@ -47,7 +48,7 @@ services:
       MYSQL_PASSWORD: sharepic_password
     volumes:
       - ./database:/var/lib/mysql
-      - ./mysql/my.cnf:/etc/mysql/my.cnf
+      - ./api/mysql.my.cnf:/etc/mysql/my.cnf
     networks:
       - sharepic-network
 

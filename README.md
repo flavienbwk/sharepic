@@ -5,10 +5,6 @@ An instagram-like mobile app for an ETNA project (TIC-MOB2).
 
 ## Notes of the version
 
-`~` studying knowledge database implementation with diatrization system.  
-`~` implementing API link with AI.  
-`*` API infrastructure and database linking.  
-
 `-` : to do  
 `~` : in progression  
 `*` : done  

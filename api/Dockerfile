@@ -6,8 +6,11 @@ COPY composer.lock composer.json /var/www/api.sharepic.net/
 # Set working directory
 WORKDIR /var/www/api.sharepic.net
 
+USER root
+RUN apt-get update
+
 # Install dependencies
-RUN apt-get update && apt-get install -y \
+RUN apt-get install -y \
     build-essential \
     mysql-client \
     libpng-dev \
@@ -33,14 +36,14 @@ RUN docker-php-ext-install gd
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 # Add user for laravel application
-RUN groupadd -g 1000 www
-RUN useradd -u 1000 -ms /bin/bash -g www www
+RUN groupadd -g 1000 www || true
+RUN useradd -u 1000 -ms /bin/bash -g www www || true
 
 # Copy existing application directory contents
-COPY . /var/www
+COPY . /var/www/api.sharepic.net
 
 # Copy existing application directory permissions
-COPY --chown=www:www . /var/www
+COPY --chown=www:www . /var/www/api.sharepic.net
 
 # Change current user to www
 USER www
