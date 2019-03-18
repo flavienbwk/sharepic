@@ -39,6 +39,7 @@ For all routes expect the `Authentication` and `Registration` ones, the queries 
 | first_name | _string_ ||
 | last_name | _string_ ||
 | email | _string_ ||
+| username | _string_ ||
 
 ## Authentication
 
@@ -46,11 +47,8 @@ For all routes expect the `Authentication` and `Registration` ones, the queries 
 
 | Endpoint | `/auth/login` | Description |
 |----------|-------------|-------------|
-| username | _string_ ||
-| email | _string_ ||
+| username | _string_ | E-mail or username |
 | password | _string_ ||
-| first_name | _string_ ||
-| last_name | _string_ ||
 
 ### Response
 
@@ -62,6 +60,7 @@ For all routes expect the `Authentication` and `Registration` ones, the queries 
 | first_name | _string_ ||
 | last_name | _string_ ||
 | email | _string_ ||
+| username | _string_ ||
 
 ## Get expiration date
 
@@ -77,20 +76,83 @@ For all routes expect the `Authentication` and `Registration` ones, the queries 
 |----------|-------------|-------------|
 | expires_at | _datetime_ ||
 
-## Get current user notifications
+## Adding an avatar to current user
 
 ### Query
 
-| Endpoint | `/account/notifications` | Description |
+| Endpoint | `/account/avatar/add` | Description |
 |----------|-------------|-------------|
-| _Nothing sent_ |||
+| avatar | _file_ | Image |
 
 ### Response
 
 | Key name | Value type | Description |
 |----------|-------------|-------------|
-| token | _string_ ||
+| uri | _string_ | Link to the image |
 
-## Publication reaction
+## User notifications
 
-## Comment reaction
+Returns the list of notifications of the currently connected user.
+
+### Query
+
+| Endpoint | `/account/notifications` | Description |
+|----------|-------------|-------------|
+| pagination_start | _int_ | optional, 0 by default |
+| pagination_end | _int_ | optional, 1 by default |
+| interval | _int_ | optional, 10 by default, 50 maximum |
+
+### Response
+
+The response will be an array of objects of the following format :
+
+| Key name | Value type | Description |
+|----------|-------------|-------------|
+| id | _int_ ||
+| message | _string_ ||
+| target_type | _string_ | "publication" or "user" |
+| target_ids | _string_ | "publication" or "user" |
+| expires_at | _datetime_ ||
+
+## User last avatar
+
+### Query
+
+| Endpoint | `/account/avatar` | Description |
+|----------|-------------|-------------|
+| ids | _string_ ||
+
+### Response
+
+| Key name | Value type | Description |
+|----------|-------------|-------------|
+| uri | _string_ | Link to the image |
+| added_at | _datetime_ ||
+
+## Publications list
+
+## Publications list of a user
+
+## Publication details list
+
+## Publication reactions
+
+## Publication comments list
+
+## User subscriptions list
+
+## User subscribed list
+
+## User subscribes
+
+Route to call when a user attempts to subscribe to another one.
+
+## Conversation creation
+
+## Conversation adding users
+
+Adding users to conversation.
+
+## Conversation messages
+
+## User conversations
