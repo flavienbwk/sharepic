@@ -22,7 +22,7 @@ For all routes expect the `Authentication` and `Registration` ones, the queries 
 
 ### Query
 
-| Endpoint | `/auth/register` | Description |
+| Endpoint | `/api/auth/register` | Description |
 |----------|-------------|-------------|
 | email | _string_ ||
 | password | _string_ ||
@@ -45,7 +45,7 @@ For all routes expect the `Authentication` and `Registration` ones, the queries 
 
 ### Query
 
-| Endpoint | `/auth/login` | Description |
+| Endpoint | `/api/auth/login` | Description |
 |----------|-------------|-------------|
 | username | _string_ | E-mail or username |
 | password | _string_ ||
@@ -66,7 +66,7 @@ For all routes expect the `Authentication` and `Registration` ones, the queries 
 
 ### Query
 
-| Endpoint | `/auth/expiration` | Description |
+| Endpoint | `/api/auth/expiration` | Description |
 |----------|-------------|-------------|
 | _Nothing sent_ |||
 
@@ -80,7 +80,7 @@ For all routes expect the `Authentication` and `Registration` ones, the queries 
 
 ### Query
 
-| Endpoint | `/account/avatar/add` | Description |
+| Endpoint | `/api/account/avatar/add` | Description |
 |----------|-------------|-------------|
 | avatar | _file_ | Image |
 
@@ -96,7 +96,7 @@ Returns the list of notifications of the currently connected user.
 
 ### Query
 
-| Endpoint | `/account/notifications` | Description |
+| Endpoint | `/api/account/notifications` | Description |
 |----------|-------------|-------------|
 | pagination_start | _int_ | optional, 0 by default |
 | pagination_end | _int_ | optional, 1 by default |
@@ -118,7 +118,7 @@ The response will be an array of objects of the following format :
 
 ### Query
 
-| Endpoint | `/account/avatar` | Description |
+| Endpoint | `/api/account/avatar` | Description |
 |----------|-------------|-------------|
 | ids | _string_ ||
 
@@ -143,9 +143,13 @@ The response will be an array of objects of the following format :
 
 ## User subscribed list
 
-## User subscribes
+## User subscription
 
 Route to call when a user attempts to subscribe to another one.
+
+## Is user subscribed
+
+Is the current connected user is subscribed to the user given in parameter ?
 
 ## Conversation creation
 
