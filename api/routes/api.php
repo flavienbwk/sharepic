@@ -21,15 +21,20 @@ Route::get('/', function () {
 
 Route::group(['middleware' => ['web']], function() {
 
+    // Authentication routes
     Route::post('auth/login', 'AuthController@login');
     Route::post('auth/register', 'AuthController@register');
     Route::post('auth/expiration', 'AuthController@expiration');
-    
 });
 
 Route::group(['middleware' => ['web', 'authenticated']], function() {
-    
+
+    // Authentication routes
     Route::post('auth/info', 'AuthController@info');
     Route::post('auth/expiration', 'AuthController@expiration');
+    
+    // Avatar-related routes
+    Route::post('account/avatar/add', 'AccountController@addAvatar');
+    Route::post('account/avatar', 'AccountController@avatar');
     
 });

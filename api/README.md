@@ -108,6 +108,21 @@ For all routes expect the `Authentication` and `Registration` ones, the queries 
 |----------|-------------|-------------|
 | uri | _string_ | Link to the image |
 
+## User last avatar
+
+### Query
+
+| Endpoint | `/api/account/avatar` | Description |
+|----------|-------------|-------------|
+| ids | _string_ ||
+
+### Response
+
+| Key name | Value type | Description |
+|----------|-------------|-------------|
+| uri | _string_ | Link to the image |
+| added_at | _datetime_ ||
+
 ## User notifications
 
 Returns the list of notifications of the currently connected user.
@@ -131,21 +146,6 @@ The response will be an array of objects of the following format :
 | target_type | _string_ | "publication" or "user" |
 | target_ids | _string_ | "publication" or "user" |
 | expires_at | _datetime_ ||
-
-## User last avatar
-
-### Query
-
-| Endpoint | `/api/account/avatar` | Description |
-|----------|-------------|-------------|
-| ids | _string_ ||
-
-### Response
-
-| Key name | Value type | Description |
-|----------|-------------|-------------|
-| uri | _string_ | Link to the image |
-| added_at | _datetime_ ||
 
 ## Publications list
 
