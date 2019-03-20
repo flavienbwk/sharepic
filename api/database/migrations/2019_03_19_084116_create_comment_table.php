@@ -13,11 +13,12 @@ class CreateCommentTable extends Migration
      */
     public function up()
     {
+        Schema::dropIfExists('comment');
         Schema::create('comment', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->text('text');
-            $table->timestamp('added_at')->default(DB::raw('CURRENT_TIMESTAMP'));
-            $table->int('Publication_id');
+            $table->timestamp('added_at')->useCurrent();
+            $table->integer('Publication_id');
         });
     }
 

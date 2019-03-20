@@ -1,7 +1,8 @@
 FROM php:7.2-fpm
 
 # Copy composer.lock and composer.json
-COPY composer.lock composer.json /var/www/api.sharepic.net/
+RUN mkdir -p /var/www/api.sharepic.net
+COPY composer.json composer.lock /var/www/api.sharepic.net/
 
 # Set working directory
 WORKDIR /var/www/api.sharepic.net
@@ -47,6 +48,9 @@ COPY --chown=www:www . /var/www/api.sharepic.net
 
 # SQL entrypoints
 ADD start.sql /docker-entrypoint-initdb.d/start.sql
+
+RUN docker-php-ext-install mbstring
+RUN ln -s /usr/local/bin/php /usr/bin/php
 
 # Change current user to www
 USER www

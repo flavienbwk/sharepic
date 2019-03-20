@@ -16,7 +16,7 @@ class CreateConversationHasUserTable extends Migration
         Schema::create('conversation_has_user', function (Blueprint $table) {
             $table->string('User_id');
             $table->string('Conversation_id');
-            $table->timestamp('added_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamp('added_at')->useCurrent();
         });
     }
 

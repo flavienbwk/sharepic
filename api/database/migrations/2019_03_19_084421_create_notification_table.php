@@ -16,10 +16,10 @@ class CreateNotificationTable extends Migration
         Schema::create('notification', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('message');
-            $table->int('Publication_id')->nullable();
-            $table->int('Target_User_id')->nullable();
-            $table->int('seen')->default(0);
-            $table->int('User_id');
+            $table->integer('Publication_id')->nullable();
+            $table->integer('Target_User_id')->nullable();
+            $table->integer('seen')->default(0);
+            $table->integer('User_id');
         });
     }
 

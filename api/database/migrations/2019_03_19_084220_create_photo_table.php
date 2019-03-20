@@ -18,8 +18,8 @@ class CreatePhotoTable extends Migration
             $table->string('name')->nullable();
             $table->string('local_uri');
             $table->string('fingerprint');
-            $table->int('order');
-            $table->int('Publication_id');
+            $table->integer('order');
+            $table->integer('Publication_id');
         });
     }
 

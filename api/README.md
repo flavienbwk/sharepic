@@ -62,6 +62,24 @@ For all routes expect the `Authentication` and `Registration` ones, the queries 
 | email | _string_ ||
 | username | _string_ ||
 
+## User information
+
+### Query
+
+| Endpoint | `/api/auth/info` | Description |
+|----------|-------------|-------------|
+| _Nothing to provide_ |||
+
+### Response
+
+| Key name | Value type | Description |
+|----------|-------------|-------------|
+| ids | _string_ ||
+| first_name | _string_ ||
+| last_name | _string_ ||
+| email | _string_ ||
+| username | _string_ ||
+
 ## Get expiration date
 
 ### Query
@@ -158,5 +176,9 @@ Is the current connected user is subscribed to the user given in parameter ?
 Adding users to conversation.
 
 ## Conversation messages
+
+## Conversation users
+
+Returns the list of the users of a conversation/
 
 ## User conversations

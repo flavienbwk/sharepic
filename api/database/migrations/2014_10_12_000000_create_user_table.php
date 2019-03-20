@@ -13,6 +13,7 @@ class CreateUserTable extends Migration
      */
     public function up()
     {
+        Schema::dropIfExists('user');
         Schema::create('user', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('ids')->unique();
@@ -20,7 +21,7 @@ class CreateUserTable extends Migration
             $table->string('password');
             $table->string('first_name')->nullable();
             $table->string('last_name')->nullable();
-            $table->timestamp('registered_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamp('registered_at')->useCurrent();
             $table->string('email')->unique();
         });
     }

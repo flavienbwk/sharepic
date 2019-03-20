@@ -17,8 +17,9 @@ class CreateConnectionTable extends Migration
             $table->bigIncrements('id');
             $table->string('token');
             $table->string("ip")->nullable();
-            $table->timestsamp("expires_at")->default(DB::raw('CURRENT_TIMESTAMP'));
-            $table->int('User_id');
+            $table->timestamp("expires_at");
+            $table->timestamp("created_at");
+            $table->integer('User_id');
         });
     }
 

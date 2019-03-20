@@ -13,13 +13,14 @@ class CreatePublicationTable extends Migration
      */
     public function up()
     {
+        Schema::dropIfExists('publication');
         Schema::create('publication', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('ids')->unique();
             $table->text('description')->nullable();
             $table->string('geolocation')->nullable();
-            $table->int('User_id');
-            $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->integer('User_id');
+            $table->timestamp('created_at')->useCurrent();
         });
     }
 

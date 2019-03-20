@@ -14,10 +14,10 @@ class CreateReactionTable extends Migration
     public function up()
     {
         Schema::create('reaction', function (Blueprint $table) {
-            $table->int('User_id');
-            $table->int('Publication_id');
-            $table->int('Reaction_id');
-            $table->timestsamp('reacted_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->integer('User_id');
+            $table->integer('Publication_id');
+            $table->integer('Reaction_id');
+            $table->timestamp('reacted_at')->useCurrent();
         });
     }
 

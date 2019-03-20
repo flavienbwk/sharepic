@@ -13,11 +13,12 @@ class CreateAvatarTable extends Migration
      */
     public function up()
     {
+        Schema::dropIfExists('avatar');
         Schema::create('avatar', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('local_uri');
-            $table->int('User_id');
-            $table->timestamp('added_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->integer('User_id');
+            $table->timestamp('added_at')->useCurrent();
         });
     }
 
