@@ -26,6 +26,7 @@ class Authentication {
                     $Connection->expires_at = date('Y-m-d H:i:s', strtotime('+2 day', time()));
                     try {
                         $Connection->save();
+                        $User = User::find($Connection->User_id);
                     } catch (\Exception $e) {
                         $ApiResponse->setErrorMessage($e->getMessage());
                     }
@@ -43,6 +44,7 @@ class Authentication {
             return response()->json($ApiResponse->getResponse(), 400);
         } else {
             $request->attributes->add(["Connection" => $Connection]);
+            $request->attributes->add(["User" => $User]);
             return $next($request);
         }
     }
