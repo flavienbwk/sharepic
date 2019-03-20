@@ -13,6 +13,7 @@ class CreateNotificationTable extends Migration
      */
     public function up()
     {
+        Schema::dropIfExists('notification');
         Schema::create('notification', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('message');
@@ -20,6 +21,7 @@ class CreateNotificationTable extends Migration
             $table->integer('Target_User_id')->nullable();
             $table->integer('seen')->default(0);
             $table->integer('User_id');
+            $table->timestamp('added_at')->useCurrent();
         });
     }
 

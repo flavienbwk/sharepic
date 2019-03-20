@@ -13,6 +13,7 @@ class CreateConversationHasUserTable extends Migration
      */
     public function up()
     {
+        Schema::dropIfExists('conversation_has_user');
         Schema::create('conversation_has_user', function (Blueprint $table) {
             $table->string('User_id');
             $table->string('Conversation_id');

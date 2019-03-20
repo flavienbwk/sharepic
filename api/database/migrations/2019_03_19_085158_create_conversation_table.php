@@ -13,6 +13,7 @@ class CreateConversationTable extends Migration
      */
     public function up()
     {
+        Schema::dropIfExists('conversation');
         Schema::create('conversation', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name',45);

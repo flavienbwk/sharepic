@@ -13,6 +13,7 @@ class CreatePhotoTable extends Migration
      */
     public function up()
     {
+        Schema::dropIfExists('photo');
         Schema::create('photo', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name')->nullable();

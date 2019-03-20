@@ -13,6 +13,7 @@ class CreateReactionTable extends Migration
      */
     public function up()
     {
+        Schema::dropIfExists('reaction');
         Schema::create('reaction', function (Blueprint $table) {
             $table->integer('User_id');
             $table->integer('Publication_id');

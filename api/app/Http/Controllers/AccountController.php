@@ -41,9 +41,9 @@ class AccountController extends Controller {
                             "User_id" => $User->id
                 ]);
                 if (!$Avatar) {
-                    $ApiResponse->setError("Failed to insert your image in database. Please try again.");
+                    $ApiResponse->setErrorMessage("Failed to insert your image in database. Please try again.");
                 } else {
-                    $ApiResponse->setError("Successfuly added your avatar.");
+                    $ApiResponse->setErrorMessage("Successfuly added your avatar.");
                 }
             } catch (Exception $ex) {
                 $ApiResponse->setErrorMessage("Failed to upload your image. Please try again : " . $ex->getMessage());
@@ -77,10 +77,10 @@ class AccountController extends Controller {
                         "added_at" => $Avatar->added_at
                     ];
                 } else {
-                    $ApiResponse->setError("No avatar found for this user.");
+                    $ApiResponse->setErrorMessage("No avatar found for this user.");
                 }
             } else {
-                $ApiResponse->setError("No user found with this ID.");
+                $ApiResponse->setErrorMessage("No user found with this ID.");
             }
         }
 

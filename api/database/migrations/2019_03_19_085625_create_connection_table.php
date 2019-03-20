@@ -13,12 +13,13 @@ class CreateConnectionTable extends Migration
      */
     public function up()
     {
+        Schema::dropIfExists('connection');
         Schema::create('connection', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('token');
             $table->string("ip")->nullable();
             $table->timestamp("expires_at");
-            $table->timestamp("created_at");
+            $table->timestamp("created_at")->useCurrent();
             $table->integer('User_id');
         });
     }
