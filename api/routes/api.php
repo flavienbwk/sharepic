@@ -37,4 +37,7 @@ Route::group(['middleware' => ['web', 'authenticated']], function() {
     Route::post('account/avatar/add', 'AccountController@addAvatar');
     Route::post('account/avatar', 'AccountController@avatar');
     
+    // Notifications route
+    Route::post('account/notifications', 'AccountController@notifications');
+    
 });

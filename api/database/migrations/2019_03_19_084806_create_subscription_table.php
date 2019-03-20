@@ -13,6 +13,7 @@ class CreateSubscriptionTable extends Migration
      */
     public function up()
     {
+        Schema::dropIfExists('subscription');
         Schema::create('subscription', function (Blueprint $table) {
             $table->integer('Subscribed_User_id')->nullable();
             $table->integer('Subscriber_User_id')->nullable();

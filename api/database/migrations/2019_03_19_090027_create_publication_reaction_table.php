@@ -13,6 +13,7 @@ class CreatePublicationReactionTable extends Migration
      */
     public function up()
     {
+        Schema::dropIfExists('publication_reaction');
         Schema::create('publication_reaction', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->timestamps();
