@@ -21,7 +21,6 @@ class Authentication {
             $Connection = Connection::where("token", $headers["X-Ov-Token"])->first();
             if ($Connection) {
                 // Expiration check
-                    var_dump($Connection->toArray());
                 if (time() - strtotime($Connection->expires_at) <= 172800) {
                     // Connection update
                     $Connection->expires_at = date('Y-m-d H:i:s', strtotime('+2 day', time()));
