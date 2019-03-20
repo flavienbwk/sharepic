@@ -10,33 +10,53 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Validator;
+use App\Http\Middleware\Authentication;
 
 class AuthController extends Controller {
 
+    public function expiration(Request $request) {
+        $ApiResponse = new ApiResponse();
+        if (\Request::get("Connection")) {
+            $Connection = \Request::get("Connection");
+            $ApiResponse->setData([
+                "expires_at" => $Connection->expires_at
+            ]);
+        } else {
+            $ApiResponse->setErrorMessage("No connection found.");
+        }
+
+        if ($ApiResponse->getError()) {
+            return response()->json($ApiResponse->getResponse(), 400);
+        } else {
+            return response()->json($ApiResponse->getResponse(), 200);
+        }
+    }
+
     public function info(Request $request) {
         $ApiResponse = new ApiResponse();
-        $headers = getallheaders();
-        if (isset($headers["x-ov-token"])) {
-            $Connection = Connection::where("token", $headers["X-Ov-Token"]);
-            if ($Connection) {
-                $User = User::find($Connection->User_id);
-                if ($User) {
-                    $details = [
-                        "ids" => $User->ids,
-                        "first_name" => $User->first_name,
-                        "last_name" => $User->last_name,
-                        "email" => $User->email,
-                        "username" => $User->username
-                    ];
-                    $ApiResponse->setData($details);
-                } else {
-                    $ApiResponse->setErrorMessage("Invalid user found for token.");
-                }
+        if (\Request::get("Connection")) {
+            $Connection = \Request::get("Connection");
+            $User = User::find($Connection->User_id);
+            if ($User) {
+                $details = [
+                    "ids" => $User->ids,
+                    "first_name" => $User->first_name,
+                    "last_name" => $User->last_name,
+                    "email" => $User->email,
+                    "username" => $User->username
+                ];
+                $ApiResponse->setData($details);
             } else {
-                $ApiResponse->setErrorMessage("Invalid X-Ov-Token.");
+                $ApiResponse->setErrorMessage("Invalid user found for token.");
             }
         } else {
-            $ApiResponse->setErrorMessage("X-Ov-Token not found when getting information.");
+            $ApiResponse->setErrorMessage("No connection found.");
+        }
+
+        if ($ApiResponse->getError()) {
+            return response()->json($ApiResponse->getResponse(), 400);
+        } else {
+            return response()->json($ApiResponse->getResponse(), 200);
         }
     }
 

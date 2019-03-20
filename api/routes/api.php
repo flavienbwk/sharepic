@@ -24,8 +24,12 @@ Route::group(['middleware' => ['web']], function() {
     Route::post('auth/login', 'AuthController@login');
     Route::post('auth/register', 'AuthController@register');
     Route::post('auth/expiration', 'AuthController@expiration');
+    
 });
 
 Route::group(['middleware' => ['web', 'authenticated']], function() {
+    
     Route::post('auth/info', 'AuthController@info');
+    Route::post('auth/expiration', 'AuthController@expiration');
+    
 });

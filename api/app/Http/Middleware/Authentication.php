@@ -15,37 +15,40 @@ use Illuminate\Support\Facades\Validator;
 class Authentication {
 
     public function handle($request, Closure $next) {
-
         $ApiResponse = new ApiResponse();
-        $headers = [];
-        foreach ($this->getRequestHeaders() as $key => $val)
-            $headers[strtolower($key)] = $val;
-        if (isset($headers["x-ov-token"])) {
-            $Connection = Connection::where("token", $headers["x-ov-token"])->first();   
+        $headers = Authentication::getRequestHeaders();
+        if (isset($headers["X-Ov-Token"])) {
+            $Connection = Connection::where("token", $headers["X-Ov-Token"])->first();
             if ($Connection) {
                 // Expiration check
-                // Connection update
-                $Connection->expires_at = date('Y-m-d H:i:s', strtotime('+2 day', time()));
-                try {
-                    $Connection->save();
-                } catch (Exception $ex) {
-                    $ApiResponse->setErrorMessage($ex->getMessage());
+                    var_dump($Connection->toArray());
+                if (time() - strtotime($Connection->expires_at) <= 172800) {
+                    // Connection update
+                    $Connection->expires_at = date('Y-m-d H:i:s', strtotime('+2 day', time()));
+                    try {
+                        $Connection->save();
+                    } catch (\Exception $e) {
+                        $ApiResponse->setErrorMessage($e->getMessage());
+                    }
+                } else {
+                    $ApiResponse->setErrorMessage("Your token has expired.");
                 }
             } else {
-                $ApiResponse->setErrorMessage("Invalid x-ov-token.");
+                $ApiResponse->setErrorMessage("Invalid X-Ov-Token.");
             }
         } else {
-            $ApiResponse->setErrorMessage("x-ov-token not found.");
+            $ApiResponse->setErrorMessage("X-Ov-Token not found.");
         }
 
         if ($ApiResponse->getError()) {
             return response()->json($ApiResponse->getResponse(), 400);
         } else {
+            $request->attributes->add(["Connection" => $Connection]);
             return $next($request);
         }
     }
 
-    private function getRequestHeaders() {
+    public static function getRequestHeaders() {
         $headers = array();
         foreach ($_SERVER as $key => $value) {
             if (substr($key, 0, 5) <> 'HTTP_') {
