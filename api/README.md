@@ -172,7 +172,7 @@ The response will be an array of objects of the following format :
 
 | Endpoint | `/api/publications/add` | Description |
 |----------|-------------|-------------|
-| photos | _array<file>_ | optional, 0 by default |
+| photos | _array<file>_ ||
 | description | _string_ ||
 | geolocation | _string_ | Optional. Place name or geocode |
 
@@ -247,32 +247,223 @@ The response will be an array of objects of the following format :
 | photos | _array<string>_ | Array of the `ids` of the publication's photos  |
 | created_at | _datetime_ | Publish date |
 
+## Reaction details
+
+### Query
+
+| Endpoint | `/api/reaction` | Description |
+|----------|-------------|-------------|
+| id | _string_ ||
+
+### Response
+
+The response will be an array of objects of the following format :
+
+| Key name | Value type | Description |
+|----------|-------------|-------------|
+| name | _string_ ||
+| image_uri | _string_ ||
+
 ## Publication reactions
+
+### Query
+
+| Endpoint | `/api/publication/reactions` | Description |
+|----------|-------------|-------------|
+| ids | _string_ ||
+
+### Response
+
+The response will be an array of objects of the following format :
+
+| Key name | Value type | Description |
+|----------|-------------|-------------|
+| User_ids | _string_ ||
+| Reaction_id | _string_ ||
+| reacted_at | _datetime_ ||
 
 ## Publication comments list
 
+### Query
+
+| Endpoint | `/api/publication/comments` | Description |
+|----------|-------------|-------------|
+| ids | _string_ ||
+| pagination_start | _int_ | Optional, 0 by default |
+| interval | _int_ | Optional, 5 by default, 50 maximum |
+
+### Response
+
+| Key name | Value type | Description |
+|----------|-------------|-------------|
+| text | _string_ ||
+| added_at | _datetime_ ||
+| User_ids | _string_ ||
+
 ## User subscriptions list
 
+List of the subscriptions for the currently connected user.
+
+### Query
+
+| Endpoint | `/api/account/subscriptions` | Description |
+|----------|-------------|-------------|
+| ids | _string_ ||
+
+### Response
+
+| Key name | Value type | Description |
+|----------|-------------|-------------|
+| ids | _array<string>_ ||
+
 ## User subscribed list
+
+### Query
+
+| Endpoint | `/api/account/subscribed` | Description |
+|----------|-------------|-------------|
+| ids | _string_ ||
+
+### Response
+
+| Key name | Value type | Description |
+|----------|-------------|-------------|
+| ids | _array<string>_ ||
 
 ## User subscription
 
 Route to call when a user attempts to subscribe to another one.
 
-## Is user subscribed
+### Query
 
-Is the current connected user subscribed to the user given in parameter ?
+| Endpoint | `/api/account/subscription` | Description |
+|----------|-------------|-------------|
+| ids | _string_ ||
+
+### Response
+
+| Key name | Value type | Description |
+|----------|-------------|-------------|
+| _No response_ |||
+
+## Is a user subscribed
+
+### Query
+
+| Endpoint | `/api/account/issubscribed` | Description |
+|----------|-------------|-------------|
+| ids | _string_ ||
+| direction | _int_ | 1 = Is the currently connected user subscribed to the user given in parameter ? 2 = Is the given user subscribed to the currently connected user ? |
+
+### Response
+
+| Key name | Value type | Description |
+|----------|-------------|-------------|
+| subscribed | _int_ | 1 for yes, 0 for no |
 
 ## Conversation creation
+
+### Query
+
+| Endpoint | `/api/conversations/add` | Description |
+|----------|-------------|-------------|
+| name | _string_ ||
+
+### Response
+
+| Key name | Value type | Description |
+|----------|-------------|-------------|
+| id | _int_ | Identifier of the created conversation |
+
+## List users by username
+
+Performs a "LIKE" SQL query to find a username. Returns the 6 most pertinents results.
+
+### Query
+
+| Endpoint | `/api/users/search` | Description |
+|----------|-------------|-------------|
+| username | _string_ | Username or part of a username to search. | 
+
+### Response
+
+The response will be an array of objects of the following format :
+
+| Key name | Value type | Description |
+|----------|-------------|-------------|
+| ids | _string_ ||
+| username | _string_ ||
 
 ## Conversation adding users
 
 Adding users to conversation.
 
+### Query
+
+| Endpoint | `/api/conversation/add_user` | Description |
+|----------|-------------|-------------|
+| conversation_id | _string_ || 
+| user_ids | _string_ ||
+
+### Response
+
+The response will be an array of objects of the following format :
+
+| Key name | Value type | Description |
+|----------|-------------|-------------|
+| _No response_ |||
+
 ## Conversation messages
+
+Messages of the current connected user.
+
+### Query
+
+| Endpoint | `/api/conversation/messages` | Description |
+|----------|-------------|-------------|
+| conversation_id | _string_ ||
+
+### Response
+
+The response will be an array of objects of the following format :
+
+| Key name | Value type | Description |
+|----------|-------------|-------------|
+| id | _int_ ||
+| value | _string_ ||
+| user_ids | _string_ | ids of the user sending the message |
 
 ## Conversation users
 
-Returns the list of the users of a conversation/
+Returns the list of the users of a conversation.
+
+### Query
+
+| Endpoint | `/api/conversations/users` | Description |
+|----------|-------------|-------------|
+| conversation_id | _string_ ||
+
+### Response
+
+The response will be an array of objects of the following format :
+
+| Key name | Value type | Description |
+|----------|-------------|-------------|
+| ids | _array<string>_ | ids of the users |
 
 ## User conversations
+
+### Query
+
+| Endpoint | `/api/conversations` | Description |
+|----------|-------------|-------------|
+| _No data_ |||
+
+### Response
+
+The response will be an array of objects of the following format :
+
+| Key name | Value type | Description |
+|----------|-------------|-------------|
+| id | _int_ ||
+| name | _string_ ||

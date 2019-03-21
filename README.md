@@ -1,7 +1,18 @@
 # sharepic
 An instagram-like mobile app for an ETNA project (TIC-MOB2).
 
-## Features
+## API
+
+Find the [documentation of the API here](./api).
+
+## Install
+
+```
+docker-compose up -d
+cd api
+composer install
+php artisan migrate
+```
 
 ## Notes of the version
 

@@ -6,6 +6,7 @@ use App\User;
 use App\Avatar;
 use App\ApiResponse;
 use App\Notification;
+use App\Subscription;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -17,6 +18,133 @@ define("UPLOAD_PATH", 'uploads'); // Inside /public
 
 class AccountController extends Controller {
 
+    public function issubscribed(Request $request) {
+        $ApiResponse = new ApiResponse();
+        $User = \Request::get("User");
+        $validator = Validator::make($request->post(), [
+                    'ids' => "required|string",
+                    'direction' => "required|integer|min:1|max:2"
+        ]);
+
+        if ($validator->fails()) {
+            $ApiResponse->setErrorMessage($validator->messages()->first());
+        } else {
+            $details = [];
+            $User_given = User::where("ids", Input::get("ids"))->first();
+            if ($User_given) {
+                if (intval(Input::get("direction")) == 1) {
+                    $Subscription = Subscription::where("Subscriber_User_id", $User->id)->where("Subscribed_User_id", $User_given->id)->first();
+                } else {
+                    $Subscription = Subscription::where("Subscribed_User_id", $User->id)->where("Subscriber_User_id", $User_given->id)->first();
+                }
+                $details["subscribed"] = ($Subscription) ? 1 : 0;
+            } else {
+                $ApiResponse->setErrorMessage("Impossible to find the user to check.");
+            }
+            $ApiResponse->setData($details);
+        }
+
+        if ($ApiResponse->getError()) {
+            return response()->json($ApiResponse->getResponse(), 400);
+        } else {
+            return response()->json($ApiResponse->getResponse(), 200);
+        }
+    }
+
+    public function subscription(Request $request) {
+        $ApiResponse = new ApiResponse();
+        $User = \Request::get("User");
+        $validator = Validator::make($request->post(), [
+                    'ids' => "required|string"
+        ]);
+
+        if ($validator->fails()) {
+            $ApiResponse->setErrorMessage($validator->messages()->first());
+        } else {
+            $details = [];
+            $User_to_subscribe = User::where("ids", Input::get("ids"))->first();
+            if ($User_to_subscribe) {
+                if ($User_to_subscribe->id != $User->id) {
+                    try {
+                        $Subscription = Subscription::create([
+                                    "Subscriber_User_id" => $User->id,
+                                    "Subscribed_User_id" => $User_to_subscribe->id
+                        ]);
+                    } catch (Exception $ex) {
+                        $ApiResponse->setErrorMessage("Impossible to subscribe to that user for the moment. Please try again.");
+                    }
+                } else {
+                    $ApiResponse->setErrorMessage("You can't subscribe to yourself.");
+                }
+            } else {
+                $ApiResponse->setErrorMessage("Impossible to find the user to subscribe to.");
+            }
+            $ApiResponse->setData($details);
+        }
+
+        if ($ApiResponse->getError()) {
+            return response()->json($ApiResponse->getResponse(), 400);
+        } else {
+            return response()->json($ApiResponse->getResponse(), 200);
+        }
+    }
+
+    public function subscriptionsList(Request $request) {
+        $ApiResponse = new ApiResponse();
+        $User = \Request::get("User");
+        $validator = Validator::make($request->post(), [
+                    'ids' => "required|string"
+        ]);
+
+        if ($validator->fails()) {
+            $ApiResponse->setErrorMessage($validator->messages()->first());
+        } else {
+            $details = [];
+            $subscriptions = Subscription::where("Subscriber_User_id", $User->id)->get()->toArray();
+            foreach ($subscriptions as $subscription) {
+                $User_tmp = User::where("ids", Input::get("ids"))->first();
+                if ($User_tmp) {
+                    $details[] = $User_tmp->ids;
+                }
+            }
+            $ApiResponse->setData($details);
+        }
+
+        if ($ApiResponse->getError()) {
+            return response()->json($ApiResponse->getResponse(), 400);
+        } else {
+            return response()->json($ApiResponse->getResponse(), 200);
+        }
+    }
+
+    public function subscribedList(Request $request) {
+        $ApiResponse = new ApiResponse();
+        $User = \Request::get("User");
+        $validator = Validator::make($request->post(), [
+                    'ids' => "required|string"
+        ]);
+
+        if ($validator->fails()) {
+            $ApiResponse->setErrorMessage($validator->messages()->first());
+        } else {
+            $details = [];
+            $subscriptions = Subscription::where("Subscribed_User_id", $User->id)->get()->toArray();
+            foreach ($subscriptions as $subscription) {
+                $User_tmp = User::where("ids", Input::get("ids"))->first();
+                if ($User_tmp) {
+                    $details[] = $User_tmp->ids;
+                }
+            }
+            $ApiResponse->setData($details);
+        }
+
+        if ($ApiResponse->getError()) {
+            return response()->json($ApiResponse->getResponse(), 400);
+        } else {
+            return response()->json($ApiResponse->getResponse(), 200);
+        }
+    }
+
     public function notificationSeen(Request $request) {
         $ApiResponse = new ApiResponse();
         $User = \Request::get("User");
@@ -24,7 +152,7 @@ class AccountController extends Controller {
                     'id' => "integer|min:1",
                     'seen' => "integer|min:0|max:1"
         ]);
-        
+
         if ($validator->fails()) {
             $ApiResponse->setErrorMessage($validator->messages()->first());
         } else {

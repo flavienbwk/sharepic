@@ -19,6 +19,7 @@ class CreateCommentTable extends Migration
             $table->text('text');
             $table->timestamp('added_at')->useCurrent();
             $table->integer('Publication_id');
+            $table->integer('User_id');
         });
     }
 
