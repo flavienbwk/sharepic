@@ -48,6 +48,8 @@ Route::group(['middleware' => ['web', 'authenticated']], function() {
     Route::post('account/issubscribed', 'AccountController@issubscribed');
 
     // Publications (base)
+    Route::post('publications/add', 'PublicationController@add');
+    
     // Publications (comments)
     // Publications (reactions)
     // Publications (comments)
@@ -62,3 +64,15 @@ Route::group(['middleware' => ['web', 'authenticated']], function() {
     // - Deploy the API on a server
 
 });
+
+Route::get('{any?}', function ($any = null) {
+    $ApiResponse = new \App\ApiResponse();
+    $ApiResponse->setMessage("Route not found.");
+    return Response::json($ApiResponse->getResponse(), 404);
+})->where('any', '.*');
+
+Route::post('{any?}', function ($any = null) {
+    $ApiResponse = new \App\ApiResponse();
+    $ApiResponse->setMessage("Route not found.");
+    return Response::json($ApiResponse->getResponse(), 404);
+})->where('any', '.*');

@@ -172,7 +172,7 @@ The response will be an array of objects of the following format :
 
 | Endpoint | `/api/publications/add` | Description |
 |----------|-------------|-------------|
-| photos | _array<file>_ | optional, 0 by default |
+| photos | _array<file>_ ||
 | description | _string_ ||
 | geolocation | _string_ | Optional. Place name or geocode |
 
@@ -302,9 +302,11 @@ The response will be an array of objects of the following format :
 
 ## User subscriptions list
 
+List of the subscriptions for the currently connected user.
+
 ### Query
 
-| Endpoint | `/api/subscriptions` | Description |
+| Endpoint | `/api/account/subscriptions` | Description |
 |----------|-------------|-------------|
 | ids | _string_ ||
 
@@ -318,7 +320,7 @@ The response will be an array of objects of the following format :
 
 ### Query
 
-| Endpoint | `/api/subscribed` | Description |
+| Endpoint | `/api/account/subscribed` | Description |
 |----------|-------------|-------------|
 | ids | _string_ ||
 
@@ -334,7 +336,7 @@ Route to call when a user attempts to subscribe to another one.
 
 ### Query
 
-| Endpoint | `/api/subscription` | Description |
+| Endpoint | `/api/account/subscription` | Description |
 |----------|-------------|-------------|
 | ids | _string_ ||
 
@@ -344,15 +346,14 @@ Route to call when a user attempts to subscribe to another one.
 |----------|-------------|-------------|
 | _No response_ |||
 
-## Is user subscribed
-
-Is the current connected user subscribed to the user given in parameter ?
+## Is a user subscribed
 
 ### Query
 
-| Endpoint | `/api/issubscribed` | Description |
+| Endpoint | `/api/account/issubscribed` | Description |
 |----------|-------------|-------------|
 | ids | _string_ ||
+| direction | _int_ | 1 = Is the currently connected user subscribed to the user given in parameter ? 2 = Is the given user subscribed to the currently connected user ? |
 
 ### Response
 
