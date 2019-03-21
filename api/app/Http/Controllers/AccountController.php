@@ -33,7 +33,7 @@ class AccountController extends Controller {
         if ($validator->fails()) {
             $ApiResponse->setErrorMessage($validator->messages()->first());
         } else {
-            $notifications = Notification::where("id", $User->id)->get()->toArray();
+            $notifications = Notification::where("id", $User->id)->offset($pagination_start)->limit($pagination_end)->get()->toArray();
             $notifs = [];
             foreach ($notifications as $notification) {
                 $target_type = "";
