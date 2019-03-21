@@ -147,11 +147,105 @@ The response will be an array of objects of the following format :
 | target_ids | _string_ | "publication" or "user" |
 | expires_at | _datetime_ ||
 
+## User notification seen
+
+Sets the notification `seen` state to `1` if seen or `0`.
+
+### Query
+
+| Endpoint | `/api/account/notification/seen` | Description |
+|----------|-------------|-------------|
+| id | _string_ ||
+| seen | _int_ | 1 if seen, 0 if not seen |
+
+### Response
+
+The response will be an array of objects of the following format :
+
+| Key name | Value type | Description |
+|----------|-------------|-------------|
+| _No response_ |||
+
+## Adding a publication
+
+### Query
+
+| Endpoint | `/api/publications/add` | Description |
+|----------|-------------|-------------|
+| photos | _array<file>_ | optional, 0 by default |
+| description | _string_ ||
+| geolocation | _string_ | Optional. Place name or geocode |
+
+### Response
+
+| Key name | Value type | Description |
+|----------|-------------|-------------|
+| ids | _string_ ||
+
 ## Publications list
+
+Public list of random last publications.
+
+### Query
+
+| Endpoint | `/api/publications/public` | Description |
+|----------|-------------|-------------|
+| pagination_start | _int_ | optional, 0 by default |
+| interval | _int_ | optional, 10 by default, 50 maximum |
+
+### Response
+
+The response will be an array of objects of the following format :
+
+| Key name | Value type | Description |
+|----------|-------------|-------------|
+| ids | _int_ ||
+| description | _string_ ||
+| geolocation | _string_ ||
+| photos | _array<string>_ | Array of the `ids` of the publication's photos  |
+| created_at | _datetime_ | Publish date |
 
 ## Publications list of a user
 
-## Publication details list
+For the current connected user, list of the publications. Based on its user subscriptions.
+
+### Query
+
+| Endpoint | `/api/publications` | Description |
+|----------|-------------|-------------|
+| pagination_start | _int_ | Optional, 0 by default |
+| interval | _int_ | Optional, 10 by default, 50 maximum |
+
+### Response
+
+The response will be an array of objects of the following format :
+
+| Key name | Value type | Description |
+|----------|-------------|-------------|
+| ids | _int_ ||
+| description | _string_ ||
+| geolocation | _string_ ||
+| photos | _array<string>_ | Array of the `ids` of the publication's photos  |
+| created_at | _datetime_ | Publish date |
+
+## Publication details
+
+### Query
+
+| Endpoint | `/api/publication` | Description |
+|----------|-------------|-------------|
+| ids | _string_ ||
+
+### Response
+
+The response will be an array of objects of the following format :
+
+| Key name | Value type | Description |
+|----------|-------------|-------------|
+| description | _string_ ||
+| geolocation | _string_ ||
+| photos | _array<string>_ | Array of the `ids` of the publication's photos  |
+| created_at | _datetime_ | Publish date |
 
 ## Publication reactions
 
@@ -167,7 +261,7 @@ Route to call when a user attempts to subscribe to another one.
 
 ## Is user subscribed
 
-Is the current connected user is subscribed to the user given in parameter ?
+Is the current connected user subscribed to the user given in parameter ?
 
 ## Conversation creation
 

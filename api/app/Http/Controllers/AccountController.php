@@ -17,6 +17,37 @@ define("UPLOAD_PATH", 'uploads'); // Inside /public
 
 class AccountController extends Controller {
 
+    public function notificationSeen(Request $request) {
+        $ApiResponse = new ApiResponse();
+        $User = \Request::get("User");
+        $validator = Validator::make($request->post(), [
+                    'id' => "integer|min:1",
+                    'seen' => "integer|min:0|max:1"
+        ]);
+        
+        if ($validator->fails()) {
+            $ApiResponse->setErrorMessage($validator->messages()->first());
+        } else {
+            $Notification = Notification::where("User_id", $User->id)->where("id", Input::get("id"))->first();
+            if ($Notification) {
+                $Notification->seen = intval(Input::get("seen"));
+                try {
+                    $Notification->save();
+                } catch (Exception $ex) {
+                    $ApiResponse->setErrorMessage("Impossible to change the notification's status : " . $ex->getMessage());
+                }
+            } else {
+                $ApiResponse->setErrorMessage("This notification has not been found for this user.");
+            }
+        }
+
+        if ($ApiResponse->getError()) {
+            return response()->json($ApiResponse->getResponse(), 400);
+        } else {
+            return response()->json($ApiResponse->getResponse(), 200);
+        }
+    }
+
     public function notifications(Request $request) {
         $ApiResponse = new ApiResponse();
         $User = \Request::get("User");
@@ -26,14 +57,14 @@ class AccountController extends Controller {
         ]);
 
         $pagination_start = ($request->has("pagination_start")) ? intval(Input::get("pagination_start")) : 0;
-        $interval = ($request->has("interval")) ? intval(Input::get("interval")) : 0;
+        $interval = ($request->has("interval")) ? intval(Input::get("interval")) : 10;
         $pagination_start *= $interval;
         $pagination_end = $pagination_start + $interval;
 
         if ($validator->fails()) {
             $ApiResponse->setErrorMessage($validator->messages()->first());
         } else {
-            $notifications = Notification::where("id", $User->id)->offset($pagination_start)->limit($pagination_end)->get()->toArray();
+            $notifications = Notification::where("User_id", $User->id)->offset($pagination_start)->limit($pagination_end)->get()->toArray();
             $notifs = [];
             foreach ($notifications as $notification) {
                 $target_type = "";

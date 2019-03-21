@@ -39,5 +39,16 @@ Route::group(['middleware' => ['web', 'authenticated']], function() {
     
     // Notifications route
     Route::post('account/notifications', 'AccountController@notifications');
+    Route::post('account/notification/seen', 'AccountController@notificationSeen');
+    
+    // User subscription
+    
+    // Publications (comments)
+    
+    // Publications (base)
+    
+    // Publications (reactions)
+    
+    // Publications (comments)
     
 });
