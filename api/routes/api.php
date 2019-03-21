@@ -32,23 +32,33 @@ Route::group(['middleware' => ['web', 'authenticated']], function() {
     // Authentication routes
     Route::post('auth/info', 'AuthController@info');
     Route::post('auth/expiration', 'AuthController@expiration');
-    
+
     // Avatar-related routes
     Route::post('account/avatar/add', 'AccountController@addAvatar');
     Route::post('account/avatar', 'AccountController@avatar');
-    
+
     // Notifications route
     Route::post('account/notifications', 'AccountController@notifications');
     Route::post('account/notification/seen', 'AccountController@notificationSeen');
-    
-    // User subscription
-    
-    // Publications (comments)
-    
+
+    // User subscriptions
+    Route::post('account/subscriptions', 'AccountController@subscriptionsList');
+    Route::post('account/subscribed', 'AccountController@subscribedList');
+    Route::post('account/subscription', 'AccountController@subscription');
+    Route::post('account/issubscribed', 'AccountController@issubscribed');
+
     // Publications (base)
-    
-    // Publications (reactions)
-    
     // Publications (comments)
-    
+    // Publications (reactions)
+    // Publications (comments)
+    // Conversations
+    // End
+    // Now :
+    // - Migration : add users
+    // - Migration : add publications
+    // - Commit on GitLab
+    // - Finish documentation of routes
+    // - Prepare PostMan for API documentation
+    // - Deploy the API on a server
+
 });
