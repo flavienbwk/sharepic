@@ -22,13 +22,13 @@ class AccountController extends Controller {
         $User = \Request::get("User");
         $validator = Validator::make($request->post(), [
                     'pagination_start' => "integer|min:0",
-                    'pagination_end' => "integer|min:1",
                     'interval' => "integer|min:10"
         ]);
 
         $pagination_start = ($request->has("pagination_start")) ? intval(Input::get("pagination_start")) : 0;
-        $pagination_end = ($request->has("pagination_end")) ? intval(Input::get("pagination_end")) : 0;
         $interval = ($request->has("interval")) ? intval(Input::get("interval")) : 0;
+        $pagination_start *= $interval;
+        $pagination_end = $pagination_start + $interval;
 
         if ($validator->fails()) {
             $ApiResponse->setErrorMessage($validator->messages()->first());

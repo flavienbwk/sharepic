@@ -132,7 +132,6 @@ Returns the list of notifications of the currently connected user.
 | Endpoint | `/api/account/notifications` | Description |
 |----------|-------------|-------------|
 | pagination_start | _int_ | optional, 0 by default |
-| pagination_end | _int_ | optional, 1 by default |
 | interval | _int_ | optional, 10 by default, 50 maximum |
 
 ### Response
