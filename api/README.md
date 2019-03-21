@@ -143,6 +143,7 @@ The response will be an array of objects of the following format :
 |----------|-------------|-------------|
 | id | _int_ ||
 | message | _string_ ||
+| seen | _int_ | 0 = no, 1 = yes |
 | target_type | _string_ | "publication" or "user" |
 | target_ids | _string_ | "publication" or "user" |
 | expires_at | _datetime_ ||

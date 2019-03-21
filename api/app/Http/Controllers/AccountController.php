@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\User;
 use App\Avatar;
 use App\ApiResponse;
+use App\Notification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -15,6 +16,62 @@ use App\Http\Middleware\Authentication;
 define("UPLOAD_PATH", 'uploads'); // Inside /public
 
 class AccountController extends Controller {
+
+    public function notifications(Request $request) {
+        $ApiResponse = new ApiResponse();
+        $User = \Request::get("User");
+        $validator = Validator::make($request->post(), [
+                    'pagination_start' => "integer|min:0",
+                    'pagination_end' => "integer|min:1",
+                    'interval' => "integer|min:10"
+        ]);
+
+        $pagination_start = ($request->has("pagination_start")) ? intval(Input::get("pagination_start")) : 0;
+        $pagination_end = ($request->has("pagination_end")) ? intval(Input::get("pagination_end")) : 0;
+        $interval = ($request->has("interval")) ? intval(Input::get("interval")) : 0;
+
+        if ($validator->fails()) {
+            $ApiResponse->setErrorMessage($validator->messages()->first());
+        } else {
+            $notifications = Notification::where("id", $User->id)->get()->toArray();
+            $notifs = [];
+            foreach ($notifications as $notification) {
+                $target_type = "";
+                $target_ids = "";
+
+                if (!empty($notification["Publication_id"])) {
+                    $Publication = Publication::find($notification["Publication_id"]);
+                    if ($Publication) {
+                        $target_type = "publication";
+                        $target_ids = $Publication->ids;
+                    }
+                }
+
+                if (!empty($notification["Target_User_id"])) {
+                    $User_n = User::find($notification["Target_User_id"]);
+                    if ($Publication) {
+                        $target_type = "user";
+                        $target_ids = $User_n->ids;
+                    }
+                }
+
+                $notifs[] = [
+                    "id" => $notification["id"],
+                    "message" => $notification["message"],
+                    "seen" => $notification["seen"],
+                    "target_type" => $target_type,
+                    "target_ids" => $target_ids
+                ];
+            }
+            $ApiResponse->setData($notifs);
+        }
+
+        if ($ApiResponse->getError()) {
+            return response()->json($ApiResponse->getResponse(), 400);
+        } else {
+            return response()->json($ApiResponse->getResponse(), 200);
+        }
+    }
 
     public function addAvatar(Request $request) {
         $ApiResponse = new ApiResponse();
