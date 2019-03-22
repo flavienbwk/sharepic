@@ -5,6 +5,8 @@ An instagram-like mobile app for an ETNA project (TIC-MOB2).
 
 Find the [documentation of the API here](./api).
 
+You can get the PostMan API documentation here : [https://documenter.getpostman.com/view/782336/S17ruTKA](https://documenter.getpostman.com/view/782336/S17ruTKA).
+
 ## Install
 
 ```

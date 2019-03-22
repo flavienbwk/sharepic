@@ -62,9 +62,8 @@ Route::group(['middleware' => ['web', 'authenticated']], function() {
     Route::post('reaction', 'ReactionController@reaction');
     Route::post('reactions', 'ReactionController@reactions');
     
-    
     // Conversations
-    
+    Route::post('conversations/add', 'ConversationController@add');
     
     // End
     // Now :

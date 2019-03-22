@@ -2,6 +2,8 @@
 
 This document is intended to present the API routes and their description.
 
+You can get the PostMan version here : [https://documenter.getpostman.com/view/782336/S17ruTKA](https://documenter.getpostman.com/view/782336/S17ruTKA).
+
 ## In any case
 
 All queries are `POST` queries.
@@ -380,20 +382,6 @@ Route to call when a user attempts to subscribe to another one.
 |----------|-------------|-------------|
 | subscribed | _int_ | 1 for yes, 0 for no |
 
-## Conversation creation
-
-### Query
-
-| Endpoint | `/api/conversations/add` | Description |
-|----------|-------------|-------------|
-| name | _string_ ||
-
-### Response
-
-| Key name | Value type | Description |
-|----------|-------------|-------------|
-| id | _int_ | Identifier of the created conversation |
-
 ## List users by username
 
 Performs a "LIKE" SQL query to find a username. Returns the 6 most pertinents results.
@@ -412,6 +400,20 @@ The response will be an array of objects of the following format :
 |----------|-------------|-------------|
 | ids | _string_ ||
 | username | _string_ ||
+
+## Conversation creation
+
+### Query
+
+| Endpoint | `/api/conversations/add` | Description |
+|----------|-------------|-------------|
+| name | _string_ ||
+
+### Response
+
+| Key name | Value type | Description |
+|----------|-------------|-------------|
+| id | _int_ | Identifier of the created conversation |
 
 ## Conversation adding users
 
