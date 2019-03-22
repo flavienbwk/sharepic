@@ -64,6 +64,7 @@ Route::group(['middleware' => ['web', 'authenticated']], function() {
     
     // Conversations
     Route::post('conversations/add', 'ConversationController@add');
+    Route::post('conversations/add_user', 'ConversationController@add_user');
     
     // End
     // Now :

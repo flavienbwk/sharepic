@@ -488,3 +488,4 @@ The response will be an array of objects of the following format :
 |----------|-------------|-------------|
 | id | _int_ ||
 | name | _string_ ||
+| User_ids | _string_ | The person who has created the conversation. |
