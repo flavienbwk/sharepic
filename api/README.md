@@ -304,6 +304,21 @@ The response will be an array of objects of the following format :
 | added_at | _datetime_ ||
 | User_ids | _string_ ||
 
+## Publication add comment
+
+### Query
+
+| Endpoint | `/api/publication/comment` | Description |
+|----------|-------------|-------------|
+| ids | _string_ | ids of the publication|
+| text | _string_ ||
+
+### Response
+
+| Key name | Value type | Description |
+|----------|-------------|-------------|
+| _No response_ |||
+
 ## User subscriptions list
 
 List of the subscriptions for the currently connected user.

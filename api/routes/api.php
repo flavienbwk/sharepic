@@ -54,7 +54,8 @@ Route::group(['middleware' => ['web', 'authenticated']], function() {
     Route::post('publication', 'PublicationController@publication');
     
     // Publications (comments)
-    
+    Route::post('publication/comments', 'PublicationController@comments');
+    Route::post('publication/comment', 'PublicationController@comment');
 
     // Publications (reactions)
     Route::post('publication/reactions', 'PublicationController@reactions');

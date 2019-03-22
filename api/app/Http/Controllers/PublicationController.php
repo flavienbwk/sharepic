@@ -7,6 +7,7 @@ use App\Publication;
 use App\Subscription;
 use App\Photo;
 use App\User;
+use App\Comment;
 use App\Publication_Photo;
 use App\Publication_Reaction;
 use App\Http\Account;
@@ -30,6 +31,85 @@ class PublicationController extends Controller {
             $ApiResponse->setErrorMessage($validator->messages()->first());
         } else {
             // do great things
+        }
+
+        if ($ApiResponse->getError()) {
+            return response()->json($ApiResponse->getResponse(), 400);
+        } else {
+            return response()->json($ApiResponse->getResponse(), 200);
+        }
+    }
+
+    public function comment(Request $request) {
+        $ApiResponse = new ApiResponse();
+        $User = \Request::get("User");
+        $validator = Validator::make($request->post(), [
+                    'text' => "required|string|min:1|max:2048",
+                    'ids' => "required|string"
+        ]);
+
+        if ($validator->fails()) {
+            $ApiResponse->setErrorMessage($validator->messages()->first());
+        } else {
+            $Publication = Publication::where("ids", Input::get("ids"))->first();
+            if ($Publication) {
+                $details = [];
+                try {
+                    Comment::create([
+                        "text" => Input::get("text"),
+                        "Publication_id" => $Publication->id,
+                        "User_id" => $User->id
+                    ]);
+                } catch (Exception $ex) {
+                    $ApiResponse->setErrorMessage("Impossible to comment for the moment. Please try again.");
+                }
+                $ApiResponse->setData($details);
+            } else {
+                $ApiResponse->setErrorMessage("Publication not found.");
+            }
+        }
+
+        if ($ApiResponse->getError()) {
+            return response()->json($ApiResponse->getResponse(), 400);
+        } else {
+            return response()->json($ApiResponse->getResponse(), 200);
+        }
+    }
+
+    public function comments(Request $request) {
+        $ApiResponse = new ApiResponse();
+        $User = \Request::get("User");
+        $validator = Validator::make($request->post(), [
+                    'ids' => "required|string",
+                    'pagination_start' => "integer|min:0",
+                    'interval' => "integer|min:10"
+        ]);
+
+        $pagination_start = ($request->has("pagination_start")) ? intval(Input::get("pagination_start")) : 0;
+        $interval = ($request->has("interval")) ? intval(Input::get("interval")) : 10;
+        $pagination_start *= $interval;
+        $pagination_end = $pagination_start + $interval;
+
+        if ($validator->fails()) {
+            $ApiResponse->setErrorMessage($validator->messages()->first());
+        } else {
+            $Publication = Publication::where("ids", Input::get("ids"))->first();
+            if ($Publication) {
+                $details = [];
+                $comments = Comment::where("Publication_id", $Publication->id)->offset($pagination_start)->limit($pagination_end)->orderBy("added_at", "desc")->get()->toArray();
+                foreach ($comments as $comment) {
+                    $user_query = User::select("ids")->find($comment["User_id"])->toArray();
+                    $user_ids = (isset($user_query["ids"])) ? $user_query["ids"] : "";
+                    $details[] = [
+                        "User_ids" => $user_ids,
+                        "added_at" => $comment["added_at"],
+                        "text" => $comment["text"]
+                    ];
+                }
+                $ApiResponse->setData($details);
+            } else {
+                $ApiResponse->setErrorMessage("Publication not found.");
+            }
         }
 
         if ($ApiResponse->getError()) {
