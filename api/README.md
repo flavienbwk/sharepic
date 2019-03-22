@@ -10,7 +10,9 @@ All queries are `POST` queries.
 
 If no route were matched or a query is malformed, an error `400` is returned. Else, all responses are `200`.
 
-In any case, the response must have theses 3 parameters :
+If a query requires authentication and the authentication fails, a `503` error is returned.
+
+In any case, the response will have theses 3 parameters :
 
 | Key name | Value type | Description |
 |----------|-------------|---------|
@@ -388,7 +390,7 @@ Performs a "LIKE" SQL query to find a username. Returns the 6 most pertinents re
 
 ### Query
 
-| Endpoint | `/api/users/search` | Description |
+| Endpoint | `/api/account/search` | Description |
 |----------|-------------|-------------|
 | username | _string_ | Username or part of a username to search. | 
 

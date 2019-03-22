@@ -3,17 +3,37 @@ An instagram-like mobile app for an ETNA project (TIC-MOB2).
 
 ## API
 
-Find the [documentation of the API here](./api).
+:information_source: **Find the [documentation of the API here](./api).**
 
-You can get the PostMan API documentation here : [https://documenter.getpostman.com/view/782336/S17ruTKA](https://documenter.getpostman.com/view/782336/S17ruTKA).
+:information_source: You can get the PostMan API documentation here : [https://documenter.getpostman.com/view/782336/S17ruTKA](https://documenter.getpostman.com/view/782336/S17ruTKA).
 
 ## Install
+
+**Requires Docker and Docker-Compose. Please install Docker.**.
+
+Please run the following commands :
 
 ```
 docker-compose up -d
 cd api
 composer install
+php artisan migrate
+php artisan db:seed
 ```
+
+Then, access the API through `http://localhost`.
+
+## Connection
+
+You can connect with theses demo credentials :
+
+- Username : `username`
+- Password : `password`
+
+OR
+
+- Username : `flavienb`
+- Password : `flav`
 
 ## Features
 
