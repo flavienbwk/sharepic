@@ -18,6 +18,31 @@ define("UPLOAD_PATH", 'uploads'); // Inside /public
 
 class AccountController extends Controller {
 
+    public function searchUsername(Request $request) {
+        $ApiResponse = new ApiResponse();
+        $User = \Request::get("User");
+        $validator = Validator::make($request->post(), [
+                    'username' => "required|string|min:1"
+        ]);
+
+        if ($validator->fails()) {
+            $ApiResponse->setErrorMessage($validator->messages()->first());
+        } else {
+            $details = [];
+            $Users = User::select("user.ids", "user.username")->where('username', 'like', '%' . Input::get('username') . '%')->limit(6)->get();
+            if ($Users) {
+                $details = $Users->toArray();
+            }
+            $ApiResponse->setData($details);
+        }
+
+        if ($ApiResponse->getError()) {
+            return response()->json($ApiResponse->getResponse(), 400);
+        } else {
+            return response()->json($ApiResponse->getResponse(), 200);
+        }
+    }
+
     public function issubscribed(Request $request) {
         $ApiResponse = new ApiResponse();
         $User = \Request::get("User");

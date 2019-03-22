@@ -41,7 +41,7 @@ class Authentication {
         }
 
         if ($ApiResponse->getError()) {
-            return response()->json($ApiResponse->getResponse(), 400);
+            return response()->json($ApiResponse->getResponse(), 403);
         } else {
             $request->attributes->add(["Connection" => $Connection]);
             $request->attributes->add(["User" => $User]);

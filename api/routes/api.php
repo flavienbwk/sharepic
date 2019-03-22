@@ -46,6 +46,7 @@ Route::group(['middleware' => ['web', 'authenticated']], function() {
     Route::post('account/subscribed', 'AccountController@subscribedList');
     Route::post('account/subscription', 'AccountController@subscription');
     Route::post('account/issubscribed', 'AccountController@issubscribed');
+    Route::post('account/search', 'AccountController@searchUsername');
 
     // Publications (base)
     Route::post('publications/add', 'PublicationController@add');
@@ -70,15 +71,10 @@ Route::group(['middleware' => ['web', 'authenticated']], function() {
     Route::post('conversation/message', 'ConversationController@message');
     Route::post('conversation/users', 'ConversationController@conversationUsers');
     
-    // End
-    // Now :
-    // - Add reactions images and records in DB
     // - Populate the database with images, users and publications
-    // - Tests
+    // - Seeders & migrate tests
+    // - Remove docker compose init.d sql file
     // - Commit on GitLab
-    // - Finish documentation of routes
-    // - Prepare PostMan for API documentation
-    // - Deploy the API on a server
 
 });
 

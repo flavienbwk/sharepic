@@ -11,6 +11,7 @@ class Publication extends Model
 {
     use Notifiable;
     protected $table = "publication";
+    public $timestamps = false;
 
     /**
      * The attributes that are mass assignable.
