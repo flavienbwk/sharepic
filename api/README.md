@@ -2,6 +2,8 @@
 
 This document is intended to present the API routes and their description.
 
+You can get the PostMan version here : [https://documenter.getpostman.com/view/782336/S17ruTKA](https://documenter.getpostman.com/view/782336/S17ruTKA).
+
 ## In any case
 
 All queries are `POST` queries.
@@ -182,13 +184,27 @@ The response will be an array of objects of the following format :
 |----------|-------------|-------------|
 | ids | _string_ ||
 
+## Removing a publication
+
+### Query
+
+| Endpoint | `/api/publications/remove` | Description |
+|----------|-------------|-------------|
+| ids | _string_ ||
+
+### Response
+
+| Key name | Value type | Description |
+|----------|-------------|-------------|
+| _No response_ |||
+
 ## Publications list
 
 Public list of random last publications.
 
 ### Query
 
-| Endpoint | `/api/publications/public` | Description |
+| Endpoint | `/api/publications` | Description |
 |----------|-------------|-------------|
 | pagination_start | _int_ | optional, 0 by default |
 | interval | _int_ | optional, 10 by default, 50 maximum |
@@ -202,30 +218,7 @@ The response will be an array of objects of the following format :
 | ids | _int_ ||
 | description | _string_ ||
 | geolocation | _string_ ||
-| photos | _array<string>_ | Array of the `ids` of the publication's photos  |
-| created_at | _datetime_ | Publish date |
-
-## Publications list of a user
-
-For the current connected user, list of the publications. Based on its user subscriptions.
-
-### Query
-
-| Endpoint | `/api/publications` | Description |
-|----------|-------------|-------------|
-| pagination_start | _int_ | Optional, 0 by default |
-| interval | _int_ | Optional, 10 by default, 50 maximum |
-
-### Response
-
-The response will be an array of objects of the following format :
-
-| Key name | Value type | Description |
-|----------|-------------|-------------|
-| ids | _int_ ||
-| description | _string_ ||
-| geolocation | _string_ ||
-| photos | _array<string>_ | Array of the `ids` of the publication's photos  |
+| photos | _array<string>_ | Array of the `local_uri` of the publication's photos  |
 | created_at | _datetime_ | Publish date |
 
 ## Publication details
@@ -238,31 +231,12 @@ The response will be an array of objects of the following format :
 
 ### Response
 
-The response will be an array of objects of the following format :
-
 | Key name | Value type | Description |
 |----------|-------------|-------------|
 | description | _string_ ||
 | geolocation | _string_ ||
 | photos | _array<string>_ | Array of the `ids` of the publication's photos  |
 | created_at | _datetime_ | Publish date |
-
-## Reaction details
-
-### Query
-
-| Endpoint | `/api/reaction` | Description |
-|----------|-------------|-------------|
-| id | _string_ ||
-
-### Response
-
-The response will be an array of objects of the following format :
-
-| Key name | Value type | Description |
-|----------|-------------|-------------|
-| name | _string_ ||
-| image_uri | _string_ ||
 
 ## Publication reactions
 
@@ -282,6 +256,38 @@ The response will be an array of objects of the following format :
 | Reaction_id | _string_ ||
 | reacted_at | _datetime_ ||
 
+## Reaction details
+
+### Query
+
+| Endpoint | `/api/reaction` | Description |
+|----------|-------------|-------------|
+| id | _string_ ||
+
+### Response
+
+| Key name | Value type | Description |
+|----------|-------------|-------------|
+| name | _string_ ||
+| image_uri | _string_ ||
+
+## Reactions list
+
+### Query
+
+| Endpoint | `/api/reactions` | Description |
+|----------|-------------|-------------|
+| _No data_ |||
+
+### Response
+
+The response will be an array of objects of the following format :
+
+| Key name | Value type | Description |
+|----------|-------------|-------------|
+| name | _string_ ||
+| image_uri | _string_ ||
+
 ## Publication comments list
 
 ### Query
@@ -299,6 +305,21 @@ The response will be an array of objects of the following format :
 | text | _string_ ||
 | added_at | _datetime_ ||
 | User_ids | _string_ ||
+
+## Publication add comment
+
+### Query
+
+| Endpoint | `/api/publication/comment` | Description |
+|----------|-------------|-------------|
+| ids | _string_ | ids of the publication|
+| text | _string_ ||
+
+### Response
+
+| Key name | Value type | Description |
+|----------|-------------|-------------|
+| _No response_ |||
 
 ## User subscriptions list
 
@@ -361,20 +382,6 @@ Route to call when a user attempts to subscribe to another one.
 |----------|-------------|-------------|
 | subscribed | _int_ | 1 for yes, 0 for no |
 
-## Conversation creation
-
-### Query
-
-| Endpoint | `/api/conversations/add` | Description |
-|----------|-------------|-------------|
-| name | _string_ ||
-
-### Response
-
-| Key name | Value type | Description |
-|----------|-------------|-------------|
-| id | _int_ | Identifier of the created conversation |
-
 ## List users by username
 
 Performs a "LIKE" SQL query to find a username. Returns the 6 most pertinents results.
@@ -394,6 +401,20 @@ The response will be an array of objects of the following format :
 | ids | _string_ ||
 | username | _string_ ||
 
+## Conversation creation
+
+### Query
+
+| Endpoint | `/api/conversations/add` | Description |
+|----------|-------------|-------------|
+| name | _string_ ||
+
+### Response
+
+| Key name | Value type | Description |
+|----------|-------------|-------------|
+| id | _int_ | Identifier of the created conversation |
+
 ## Conversation adding users
 
 Adding users to conversation.
@@ -403,7 +424,7 @@ Adding users to conversation.
 | Endpoint | `/api/conversation/add_user` | Description |
 |----------|-------------|-------------|
 | conversation_id | _string_ || 
-| user_ids | _string_ ||
+| User_ids | _string_ ||
 
 ### Response
 
@@ -413,6 +434,23 @@ The response will be an array of objects of the following format :
 |----------|-------------|-------------|
 | _No response_ |||
 
+## Conversation message
+
+Send message to a conversation.
+
+### Query
+
+| Endpoint | `/api/conversation/message` | Description |
+|----------|-------------|-------------|
+| conversation_id | _int_ ||
+| value | _string_ | Message |
+
+### Response
+
+| Key name | Value type | Description |
+|----------|-------------|-------------|
+| _No data_ |||
+
 ## Conversation messages
 
 Messages of the current connected user.
@@ -421,7 +459,7 @@ Messages of the current connected user.
 
 | Endpoint | `/api/conversation/messages` | Description |
 |----------|-------------|-------------|
-| conversation_id | _string_ ||
+| conversation_id | _int_ ||
 
 ### Response
 
@@ -429,17 +467,16 @@ The response will be an array of objects of the following format :
 
 | Key name | Value type | Description |
 |----------|-------------|-------------|
-| id | _int_ ||
 | value | _string_ ||
-| user_ids | _string_ | ids of the user sending the message |
+| User_ids | _string_ | ids of the user sending the message |
 
 ## Conversation users
 
-Returns the list of the users of a conversation.
+Returns the list of the users of a conversation if the currently connected user is part of the conversation.
 
 ### Query
 
-| Endpoint | `/api/conversations/users` | Description |
+| Endpoint | `/api/conversation/users` | Description |
 |----------|-------------|-------------|
 | conversation_id | _string_ ||
 
@@ -467,3 +504,4 @@ The response will be an array of objects of the following format :
 |----------|-------------|-------------|
 | id | _int_ ||
 | name | _string_ ||
+| User_ids | _string_ | The person who has created the conversation. |

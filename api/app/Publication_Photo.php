@@ -4,9 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Reaction extends Model {
+class Publication_Photo extends Model {
 
-    protected $table = "reaction";
+    protected $table = "publication_photo";
     public $timestamps = false;
 
     /**
@@ -15,8 +15,9 @@ class Reaction extends Model {
      * @var array
      */
     protected $fillable = [
-        "name",
-        "image_uri"
+        "Publication_id",
+        "Photo_id",
+        "order"
     ];
 
 }

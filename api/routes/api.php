@@ -49,15 +49,32 @@ Route::group(['middleware' => ['web', 'authenticated']], function() {
 
     // Publications (base)
     Route::post('publications/add', 'PublicationController@add');
+    Route::post('publications/remove', 'PublicationController@remove');
+    Route::post('publications', 'PublicationController@publications');
+    Route::post('publication', 'PublicationController@publication');
     
     // Publications (comments)
+    Route::post('publication/comments', 'PublicationController@comments');
+    Route::post('publication/comment', 'PublicationController@comment');
+
     // Publications (reactions)
-    // Publications (comments)
+    Route::post('publication/reactions', 'PublicationController@reactions');
+    Route::post('reaction', 'ReactionController@reaction');
+    Route::post('reactions', 'ReactionController@reactions');
+    
     // Conversations
+    Route::post('conversations', 'ConversationController@conversations');
+    Route::post('conversations/add', 'ConversationController@add');
+    Route::post('conversations/add_user', 'ConversationController@addUser');
+    Route::post('conversation/messages', 'ConversationController@messages');
+    Route::post('conversation/message', 'ConversationController@message');
+    Route::post('conversation/users', 'ConversationController@conversationUsers');
+    
     // End
     // Now :
-    // - Migration : add users
-    // - Migration : add publications
+    // - Add reactions images and records in DB
+    // - Populate the database with images, users and publications
+    // - Tests
     // - Commit on GitLab
     // - Finish documentation of routes
     // - Prepare PostMan for API documentation

@@ -5,21 +5,21 @@ An instagram-like mobile app for an ETNA project (TIC-MOB2).
 
 Find the [documentation of the API here](./api).
 
+You can get the PostMan API documentation here : [https://documenter.getpostman.com/view/782336/S17ruTKA](https://documenter.getpostman.com/view/782336/S17ruTKA).
+
 ## Install
 
 ```
 docker-compose up -d
 cd api
 composer install
-php artisan migrate
 ```
 
-## Notes of the version
+## Features
 
-`-` : to do  
-`~` : in progression  
-`*` : done  
-`/` : canceled  
+- Easy deploy with Docker
+- Multiple photos per post
+- Groups chats
 
 ## Database schema
 
