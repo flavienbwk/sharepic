@@ -11,7 +11,6 @@ Find the [documentation of the API here](./api).
 docker-compose up -d
 cd api
 composer install
-php artisan migrate
 ```
 
 ## Notes of the version
