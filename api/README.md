@@ -182,13 +182,27 @@ The response will be an array of objects of the following format :
 |----------|-------------|-------------|
 | ids | _string_ ||
 
+## Removing a publication
+
+### Query
+
+| Endpoint | `/api/publications/remove` | Description |
+|----------|-------------|-------------|
+| ids | _string_ ||
+
+### Response
+
+| Key name | Value type | Description |
+|----------|-------------|-------------|
+| _No response_ |||
+
 ## Publications list
 
 Public list of random last publications.
 
 ### Query
 
-| Endpoint | `/api/publications/public` | Description |
+| Endpoint | `/api/publications` | Description |
 |----------|-------------|-------------|
 | pagination_start | _int_ | optional, 0 by default |
 | interval | _int_ | optional, 10 by default, 50 maximum |
@@ -202,30 +216,7 @@ The response will be an array of objects of the following format :
 | ids | _int_ ||
 | description | _string_ ||
 | geolocation | _string_ ||
-| photos | _array<string>_ | Array of the `ids` of the publication's photos  |
-| created_at | _datetime_ | Publish date |
-
-## Publications list of a user
-
-For the current connected user, list of the publications. Based on its user subscriptions.
-
-### Query
-
-| Endpoint | `/api/publications` | Description |
-|----------|-------------|-------------|
-| pagination_start | _int_ | Optional, 0 by default |
-| interval | _int_ | Optional, 10 by default, 50 maximum |
-
-### Response
-
-The response will be an array of objects of the following format :
-
-| Key name | Value type | Description |
-|----------|-------------|-------------|
-| ids | _int_ ||
-| description | _string_ ||
-| geolocation | _string_ ||
-| photos | _array<string>_ | Array of the `ids` of the publication's photos  |
+| photos | _array<string>_ | Array of the `local_uri` of the publication's photos  |
 | created_at | _datetime_ | Publish date |
 
 ## Publication details
@@ -238,31 +229,12 @@ The response will be an array of objects of the following format :
 
 ### Response
 
-The response will be an array of objects of the following format :
-
 | Key name | Value type | Description |
 |----------|-------------|-------------|
 | description | _string_ ||
 | geolocation | _string_ ||
 | photos | _array<string>_ | Array of the `ids` of the publication's photos  |
 | created_at | _datetime_ | Publish date |
-
-## Reaction details
-
-### Query
-
-| Endpoint | `/api/reaction` | Description |
-|----------|-------------|-------------|
-| id | _string_ ||
-
-### Response
-
-The response will be an array of objects of the following format :
-
-| Key name | Value type | Description |
-|----------|-------------|-------------|
-| name | _string_ ||
-| image_uri | _string_ ||
 
 ## Publication reactions
 
@@ -281,6 +253,38 @@ The response will be an array of objects of the following format :
 | User_ids | _string_ ||
 | Reaction_id | _string_ ||
 | reacted_at | _datetime_ ||
+
+## Reaction details
+
+### Query
+
+| Endpoint | `/api/reaction` | Description |
+|----------|-------------|-------------|
+| id | _string_ ||
+
+### Response
+
+| Key name | Value type | Description |
+|----------|-------------|-------------|
+| name | _string_ ||
+| image_uri | _string_ ||
+
+## Reactions list
+
+### Query
+
+| Endpoint | `/api/reactions` | Description |
+|----------|-------------|-------------|
+| _No data_ |||
+
+### Response
+
+The response will be an array of objects of the following format :
+
+| Key name | Value type | Description |
+|----------|-------------|-------------|
+| name | _string_ ||
+| image_uri | _string_ ||
 
 ## Publication comments list
 

@@ -49,15 +49,27 @@ Route::group(['middleware' => ['web', 'authenticated']], function() {
 
     // Publications (base)
     Route::post('publications/add', 'PublicationController@add');
+    Route::post('publications/remove', 'PublicationController@remove');
+    Route::post('publications', 'PublicationController@publications');
+    Route::post('publication', 'PublicationController@publication');
     
     // Publications (comments)
+    
+
     // Publications (reactions)
-    // Publications (comments)
+    Route::post('publication/reactions', 'PublicationController@reactions');
+    Route::post('reaction', 'ReactionController@reaction');
+    Route::post('reactions', 'ReactionController@reactions');
+    
+    
     // Conversations
+    
+    
     // End
     // Now :
-    // - Migration : add users
-    // - Migration : add publications
+    // - Add reactions images and records in DB
+    // - Populate the database with images, users and publications
+    // - Tests
     // - Commit on GitLab
     // - Finish documentation of routes
     // - Prepare PostMan for API documentation

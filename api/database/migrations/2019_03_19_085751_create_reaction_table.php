@@ -15,10 +15,9 @@ class CreateReactionTable extends Migration
     {
         Schema::dropIfExists('reaction');
         Schema::create('reaction', function (Blueprint $table) {
-            $table->integer('User_id');
-            $table->integer('Publication_id');
-            $table->integer('Reaction_id');
-            $table->timestamp('reacted_at')->useCurrent();
+            $table->bigIncrements('id');
+            $table->string('name');
+            $table->string('image_uri');
         });
     }
 
