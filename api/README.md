@@ -424,7 +424,7 @@ Adding users to conversation.
 | Endpoint | `/api/conversation/add_user` | Description |
 |----------|-------------|-------------|
 | conversation_id | _string_ || 
-| user_ids | _string_ ||
+| User_ids | _string_ ||
 
 ### Response
 
@@ -434,6 +434,23 @@ The response will be an array of objects of the following format :
 |----------|-------------|-------------|
 | _No response_ |||
 
+## Conversation message
+
+Send message to a conversation.
+
+### Query
+
+| Endpoint | `/api/conversation/message` | Description |
+|----------|-------------|-------------|
+| conversation_id | _int_ ||
+| value | _string_ | Message |
+
+### Response
+
+| Key name | Value type | Description |
+|----------|-------------|-------------|
+| _No data_ |||
+
 ## Conversation messages
 
 Messages of the current connected user.
@@ -442,7 +459,7 @@ Messages of the current connected user.
 
 | Endpoint | `/api/conversation/messages` | Description |
 |----------|-------------|-------------|
-| conversation_id | _string_ ||
+| conversation_id | _int_ ||
 
 ### Response
 
@@ -450,17 +467,16 @@ The response will be an array of objects of the following format :
 
 | Key name | Value type | Description |
 |----------|-------------|-------------|
-| id | _int_ ||
 | value | _string_ ||
-| user_ids | _string_ | ids of the user sending the message |
+| User_ids | _string_ | ids of the user sending the message |
 
 ## Conversation users
 
-Returns the list of the users of a conversation.
+Returns the list of the users of a conversation if the currently connected user is part of the conversation.
 
 ### Query
 
-| Endpoint | `/api/conversations/users` | Description |
+| Endpoint | `/api/conversation/users` | Description |
 |----------|-------------|-------------|
 | conversation_id | _string_ ||
 

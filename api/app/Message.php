@@ -13,5 +13,8 @@ class Message extends Model {
         "Conversation_id",
         "User_id"
     ];
+    protected $casts = [
+        'added_at' => 'datetime',
+    ];
 
 }

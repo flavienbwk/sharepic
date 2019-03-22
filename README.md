@@ -15,12 +15,11 @@ cd api
 composer install
 ```
 
-## Notes of the version
+## Features
 
-`-` : to do  
-`~` : in progression  
-`*` : done  
-`/` : canceled  
+- Easy deploy with Docker
+- Multiple photos per post
+- Groups chats
 
 ## Database schema
 

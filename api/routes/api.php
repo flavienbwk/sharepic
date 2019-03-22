@@ -63,8 +63,12 @@ Route::group(['middleware' => ['web', 'authenticated']], function() {
     Route::post('reactions', 'ReactionController@reactions');
     
     // Conversations
+    Route::post('conversations', 'ConversationController@conversations');
     Route::post('conversations/add', 'ConversationController@add');
-    Route::post('conversations/add_user', 'ConversationController@add_user');
+    Route::post('conversations/add_user', 'ConversationController@addUser');
+    Route::post('conversation/messages', 'ConversationController@messages');
+    Route::post('conversation/message', 'ConversationController@message');
+    Route::post('conversation/users', 'ConversationController@conversationUsers');
     
     // End
     // Now :

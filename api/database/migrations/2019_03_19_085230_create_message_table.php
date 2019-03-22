@@ -19,6 +19,7 @@ class CreateMessageTable extends Migration
             $table->string('value', 1000);
             $table->integer("Conversation_id");
             $table->integer("User_id");
+            $table->timestamp("added_at")->useCurrent();
         });
     }
 
