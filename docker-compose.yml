@@ -15,6 +15,8 @@ services:
       - ./api/php.local.ini:/usr/local/etc/php/conf.d/local.ini
     networks:
       - sharepic-network
+    links:
+      - database
 
   #Nginx Service
   nginx:
@@ -47,7 +49,7 @@ services:
       MYSQL_USER: sharepic_user
       MYSQL_PASSWORD: sharepic_password
     volumes:
-      - ./database:/var/lib/mysql
+      - database:/var/lib/mysql
       - ./api/mysql.my.cnf:/etc/mysql/my.cnf
     networks:
       - sharepic-network
@@ -56,3 +58,6 @@ services:
 networks:
   sharepic-network:
     driver: bridge
+
+volumes:
+    database:
