@@ -18,6 +18,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="adultSign" translatesAutoresizingMaskIntoConstraints="NO" id="K0z-yd-qqN">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="K0z-yd-qqN" secondAttribute="height" multiplier="207:448" id="i57-4d-QYT"/>
+                                </constraints>
+                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rbn-az-YDC">
                                 <rect key="frame" x="30" y="654" width="354" height="49"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -62,14 +68,18 @@
                         <color key="backgroundColor" red="0.14589276909828186" green="0.16387876868247986" blue="0.21569278836250305" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstItem="Rbn-az-YDC" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="30" id="05H-HW-qAd"/>
+                            <constraint firstItem="K0z-yd-qqN" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="1Sr-tU-1Ee"/>
                             <constraint firstItem="pOf-bU-fcX" firstAttribute="top" secondItem="Wyo-yT-p2w" secondAttribute="bottom" constant="29" id="9lb-WZ-YKp"/>
+                            <constraint firstItem="K0z-yd-qqN" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="ByT-Do-MM3"/>
                             <constraint firstItem="tU2-Lv-f8d" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="30" id="C7L-0L-eKv"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="pOf-bU-fcX" secondAttribute="trailing" constant="30" id="FFs-d6-uIR"/>
                             <constraint firstItem="Wyo-yT-p2w" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="30" id="JDp-l7-9Er"/>
+                            <constraint firstItem="K0z-yd-qqN" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="U1k-n5-XHD"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="tU2-Lv-f8d" secondAttribute="trailing" constant="30" id="XVe-LB-GiI"/>
                             <constraint firstItem="tU2-Lv-f8d" firstAttribute="top" secondItem="Rbn-az-YDC" secondAttribute="bottom" constant="8" id="gHo-4l-hNh"/>
                             <constraint firstItem="Rbn-az-YDC" firstAttribute="top" secondItem="pOf-bU-fcX" secondAttribute="bottom" constant="35" id="hCz-Wp-f9C"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="tU2-Lv-f8d" secondAttribute="bottom" constant="102" id="l3N-h3-E2Z"/>
+                            <constraint firstAttribute="bottom" secondItem="K0z-yd-qqN" secondAttribute="bottom" id="ofA-Yl-Fu3"/>
                             <constraint firstItem="pOf-bU-fcX" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="30" id="s3k-7z-QXd"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Rbn-az-YDC" secondAttribute="trailing" constant="30" id="saY-Ko-JXp"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Wyo-yT-p2w" secondAttribute="trailing" constant="30" id="w5c-6U-zXf"/>
@@ -82,4 +92,7 @@
             <point key="canvasLocation" x="47.826086956521742" y="19.419642857142858"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="adultSign" width="3953" height="5784"/>
+    </resources>
 </document>
