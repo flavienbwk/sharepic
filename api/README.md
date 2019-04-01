@@ -240,6 +240,26 @@ The response will be an array of objects of the following format :
 | photos | _array<string>_ | Array of the `ids` of the publication's photos  |
 | created_at | _datetime_ | Publish date |
 
+## React to publication
+
+If the same reaction is sent after being already sent, it will unreact.
+If another reaction is sent, it will modify the reaction (remove the last one, and add the new one).
+
+### Query
+
+| Endpoint | `/api/publication/react` | Description |
+|----------|-------------|-------------|
+| ids | _string_ ||
+| id_reaction | _string_ ||
+
+### Response
+
+The response will be an array of objects of the following format :
+
+| Key name | Value type | Description |
+|----------|-------------|-------------|
+| _No data_ |||
+
 ## Publication reactions
 
 ### Query

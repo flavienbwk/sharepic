@@ -7,6 +7,7 @@ use App\Avatar;
 use App\ApiResponse;
 use App\Notification;
 use App\Subscription;
+use App\Publication;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -97,6 +98,17 @@ class AccountController extends Controller {
                         ]);
                     } catch (Exception $ex) {
                         $ApiResponse->setErrorMessage("Impossible to subscribe to that user for the moment. Please try again.");
+                    }
+
+                    try {
+                        Notification::create([
+                            "message" => $User->username . " subscribed to you.",
+                            "Target_User_id" => $User->id,
+                            "seen" => 0,
+                            "User_id" => $User_to_subscribe->id
+                        ]);
+                    } catch(Exception $ex) {
+
                     }
                 } else {
                     $ApiResponse->setErrorMessage("You can't subscribe to yourself.");
