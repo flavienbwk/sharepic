@@ -8,6 +8,8 @@ use App\Subscription;
 use App\Photo;
 use App\User;
 use App\Comment;
+use App\Reaction;
+use App\Notification;
 use App\Publication_Photo;
 use App\Publication_Reaction;
 use App\Http\Account;
@@ -42,6 +44,17 @@ class PublicationController extends Controller {
                     ]);
                 } catch (Exception $ex) {
                     $ApiResponse->setErrorMessage("Impossible to comment for the moment. Please try again.");
+                }
+
+                try {
+                    Notification::create([
+                        "message" => $User->username . " commented your publication.",
+                        "Publication_id" => $Publication->id,
+                        "seen" => 0,
+                        "User_id" => $Publication->User_id
+                    ]);
+                } catch(Exception $ex) {
+
                 }
                 $ApiResponse->setData($details);
             } else {
@@ -128,6 +141,86 @@ class PublicationController extends Controller {
                 $ApiResponse->setData($details);
             } else {
                 $ApiResponse->setErrorMessage("Publication not found.");
+            }
+        }
+
+        if ($ApiResponse->getError()) {
+            return response()->json($ApiResponse->getResponse(), 400);
+        } else {
+            return response()->json($ApiResponse->getResponse(), 200);
+        }
+    }
+
+    public function react(Request $request) {
+        $ApiResponse = new ApiResponse();
+        $User = \Request::get("User");
+        $validator = Validator::make($request->post(), [
+            'ids' => "required|string",
+            'id_reaction' => "required|string"
+        ]);
+
+        if ($validator->fails()) {
+            $ApiResponse->setErrorMessage($validator->messages()->first());
+        } else {
+            $Reaction = Reaction::find(Input::get("id_reaction"));
+            if ($Reaction) {
+                $Publication = Publication::where("ids", Input::get("ids"));
+                if ($Publication->first()) {
+                    $Reacted = Publication_Reaction::where("User_id", $User->id)->where("Publication_id", $Publication->first()->id);
+                    if (sizeof($Reacted->get()->toArray()) == 0) {
+                        // If never reacted
+                        try {
+                            Publication_Reaction::create([
+                                "User_id" => $User->id,
+                                "Publication_id" => $Publication->first()->id,
+                                "Reaction_id" => Input::get("id_reaction"),
+                                "reacted_at" => now()
+                            ]);
+
+                            Notification::create([
+                                "message" => $User->username . " reacted " . $Reaction->first()->name . " to your publication.",
+                                "Publication_id" => $Publication->first()->id,
+                                "seen" => 0,
+                                "User_id" => $Publication->first()->User_id
+                            ]);
+                        } catch (Exception $ex) {
+                            $ApiResponse->setErrorMessage("Impossible to react for the moment. Please try again : " . $ex->getMessage());
+                        }
+                    } else {
+                        if ($Reacted->first()->Reaction_id == intval(Input::get("id_reaction"))) {
+                            // Same reaction = removing reaction
+                            try {
+                                $Reacted->delete();
+                            } catch (Exception $ex) {
+                                $ApiResponse->setErrorMessage("Impossible to remove reaction for the moment. Please try again : " . $ex->getMessage());
+                            }
+                        } else {
+                            // Change reaction
+                            try {
+                                $Reacted->delete();
+                                Publication_Reaction::create([
+                                    "User_id" => $User->id,
+                                    "Publication_id" => $Publication->first()->id,
+                                    "Reaction_id" => Input::get("id_reaction"),
+                                    "reacted_at" => now()
+                                ]);
+                                Notification::create([
+                                    "message" => $User->username . " reacted " . $Reaction->first()->name . " to your publication.",
+                                    "Publication_id" => $Publication->first()->id,
+                                    "seen" => 0,
+                                    "User_id" => $Publication->first()->User_id
+                                ]);
+                            } catch (Exception $ex) {
+                                $ApiResponse->setErrorMessage("Impossible to change reaction for the moment. Please try again : " . $ex->getMessage());
+                            }
+                        }
+
+                    }
+                } else {
+                    $ApiResponse->setErrorMessage("That publication doesn't exist.");
+                }
+            } else {
+                $ApiResponse->setErrorMessage("That reaction doesn't exist.");
             }
         }
 

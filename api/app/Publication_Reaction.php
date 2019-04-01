@@ -18,6 +18,11 @@ class Publication_Reaction extends Model
     protected $fillable = [
         "Publication_id",
         "Reaction_id",
-        "User_id"
+        "User_id",
+        "reacted_at"
+    ];
+    
+    protected $casts = [
+        'reacted_at' => 'datetime',
     ];
 }

@@ -60,6 +60,7 @@ Route::group(['middleware' => ['web', 'authenticated']], function() {
 
     // Publications (reactions)
     Route::post('publication/reactions', 'PublicationController@reactions');
+    Route::post('publication/react', 'PublicationController@react');
     Route::post('reaction', 'ReactionController@reaction');
     Route::post('reactions', 'ReactionController@reactions');
     
