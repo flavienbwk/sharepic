@@ -74,6 +74,27 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		217C02E22246C8E0004EC18E /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		217C02E32246C911004EC18E /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		217C02E42246C918004EC18E /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
 		21AD575222423F18007F2776 = {
 			isa = PBXGroup;
 			children = (
@@ -97,6 +118,9 @@
 		21AD575D22423F18007F2776 /* InstagramLike */ = {
 			isa = PBXGroup;
 			children = (
+				217C02E42246C918004EC18E /* Controllers */,
+				217C02E32246C911004EC18E /* Models */,
+				217C02E22246C8E0004EC18E /* Views */,
 				21AD575E22423F18007F2776 /* AppDelegate.swift */,
 				21AD576022423F18007F2776 /* ViewController.swift */,
 				21AD576222423F18007F2776 /* Main.storyboard */,

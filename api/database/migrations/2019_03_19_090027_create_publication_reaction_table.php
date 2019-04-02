@@ -18,7 +18,6 @@ class CreatePublicationReactionTable extends Migration
             $table->integer('Publication_id');
             $table->integer('Reaction_id');
             $table->integer('User_id');
-            $table->integer('order')->default(0);
             $table->timestamp('reacted_at')->useCurrent();
         });
     }
