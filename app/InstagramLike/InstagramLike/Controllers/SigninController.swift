@@ -10,25 +10,28 @@ import UIKit
 
 class SigninController: UIViewController {
     
-    @IBOutlet weak var LogIn: UIButton!
-    @IBOutlet weak var SignUp: UIButton!
+    @IBOutlet weak var Validate: UIButton!
+    @IBOutlet weak var Password: UITextField!
+    @IBOutlet weak var Email: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        let CustomPink = UIColor(red:0.96, green:0.29, blue:0.39, alpha:1.0)
-        let CustomOrange = UIColor(red:0.97, green:0.51, blue:0.38, alpha:1.0)
         let gradientLayer = CAGradientLayer()
         gradientLayer.transform = CATransform3DMakeRotation(90.0 / 180.0 * .pi, 0, 0, 1)
-        gradientLayer.frame = self.SignUp.bounds
+        gradientLayer.frame = self.view.bounds
         gradientLayer.colors = [CustomOrange.cgColor, CustomPink.cgColor]
-        self.SignUp.layer.addSublayer(gradientLayer)
-        let radiusLogIn: CGFloat = self.LogIn.bounds.size.height / 2.3
-        let radiuSignUp: CGFloat = self.SignUp.bounds.size.height / 2.3
-        self.LogIn.layer.cornerRadius = radiusLogIn
-        self.LogIn.clipsToBounds = true
-        self.SignUp.layer.cornerRadius = radiuSignUp
-        self.SignUp.clipsToBounds = true
+        self.view.layer.insertSublayer(gradientLayer, at: 0)
+        self.Validate.backgroundColor = BLUE
+        self.Email.placeholder = EMAIL_TEXT
+        self.Password.placeholder = PASSWORD_TEXT
+        let CallApi = RequestApi()
+//        let urlencoded = CallApi.Register(email: <#T##String#>, password: <#T##String#>, username: <#T##String#>)
+//        CallApi.getData(uri: "/auth/register", urlencoded: urlencoded) { (data, error) in
+//            print(data as Any)
+//        }
     }
-    
-    
 }
+    
+    
+
 

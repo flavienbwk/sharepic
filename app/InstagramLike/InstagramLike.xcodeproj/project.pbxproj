@@ -7,6 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		21083BF0224A7CE600A63429 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21083BEF224A7CE600A63429 /* LoginController.swift */; };
+		21083BF2224A84CD00A63429 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21083BF1224A84CD00A63429 /* NavigationController.swift */; };
+		212C83B12249609900DE6CBF /* SigninController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212C83B02249609900DE6CBF /* SigninController.swift */; };
+		217C03502246E703004EC18E /* Lato-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 217C03452246E703004EC18E /* Lato-Black.ttf */; };
+		217C03512246E703004EC18E /* Lato-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 217C03462246E703004EC18E /* Lato-Italic.ttf */; };
+		217C03522246E703004EC18E /* OFL.txt in Resources */ = {isa = PBXBuildFile; fileRef = 217C03472246E703004EC18E /* OFL.txt */; };
+		217C03532246E703004EC18E /* Lato-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 217C03482246E703004EC18E /* Lato-Bold.ttf */; };
+		217C03542246E703004EC18E /* Lato-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 217C03492246E703004EC18E /* Lato-BoldItalic.ttf */; };
+		217C03552246E703004EC18E /* Lato-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 217C034A2246E703004EC18E /* Lato-LightItalic.ttf */; };
+		217C03562246E703004EC18E /* Lato-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 217C034B2246E703004EC18E /* Lato-Regular.ttf */; };
+		217C03572246E703004EC18E /* Lato-HairlineItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 217C034C2246E703004EC18E /* Lato-HairlineItalic.ttf */; };
+		217C03582246E703004EC18E /* Lato-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 217C034D2246E703004EC18E /* Lato-Light.ttf */; };
+		217C03592246E703004EC18E /* Lato-Hairline.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 217C034E2246E703004EC18E /* Lato-Hairline.ttf */; };
+		217C035A2246E703004EC18E /* Lato-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 217C034F2246E703004EC18E /* Lato-BlackItalic.ttf */; };
 		21AD575F22423F18007F2776 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD575E22423F18007F2776 /* AppDelegate.swift */; };
 		21AD576122423F18007F2776 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD576022423F18007F2776 /* ViewController.swift */; };
 		21AD576422423F18007F2776 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 21AD576222423F18007F2776 /* Main.storyboard */; };
@@ -14,6 +28,8 @@
 		21AD576922423F19007F2776 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 21AD576722423F19007F2776 /* LaunchScreen.storyboard */; };
 		21AD577422423F19007F2776 /* InstagramLikeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD577322423F19007F2776 /* InstagramLikeTests.swift */; };
 		21AD577F22423F19007F2776 /* InstagramLikeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD577E22423F19007F2776 /* InstagramLikeUITests.swift */; };
+		21CA1F8222564629009999D7 /* Constante.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21CA1F8122564629009999D7 /* Constante.swift */; };
+		21CA1F872256D14F009999D7 /* RequestApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21CA1F862256D14F009999D7 /* RequestApi.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +50,20 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		21083BEF224A7CE600A63429 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
+		21083BF1224A84CD00A63429 /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
+		212C83B02249609900DE6CBF /* SigninController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SigninController.swift; sourceTree = "<group>"; };
+		217C03452246E703004EC18E /* Lato-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lato-Black.ttf"; path = "../../../../../../../Lato/Lato-Black.ttf"; sourceTree = "<group>"; };
+		217C03462246E703004EC18E /* Lato-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lato-Italic.ttf"; path = "../../../../../../../Lato/Lato-Italic.ttf"; sourceTree = "<group>"; };
+		217C03472246E703004EC18E /* OFL.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = OFL.txt; path = ../../../../../../../Lato/OFL.txt; sourceTree = "<group>"; };
+		217C03482246E703004EC18E /* Lato-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lato-Bold.ttf"; path = "../../../../../../../Lato/Lato-Bold.ttf"; sourceTree = "<group>"; };
+		217C03492246E703004EC18E /* Lato-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lato-BoldItalic.ttf"; path = "../../../../../../../Lato/Lato-BoldItalic.ttf"; sourceTree = "<group>"; };
+		217C034A2246E703004EC18E /* Lato-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lato-LightItalic.ttf"; path = "../../../../../../../Lato/Lato-LightItalic.ttf"; sourceTree = "<group>"; };
+		217C034B2246E703004EC18E /* Lato-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lato-Regular.ttf"; path = "../../../../../../../Lato/Lato-Regular.ttf"; sourceTree = "<group>"; };
+		217C034C2246E703004EC18E /* Lato-HairlineItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lato-HairlineItalic.ttf"; path = "../../../../../../../Lato/Lato-HairlineItalic.ttf"; sourceTree = "<group>"; };
+		217C034D2246E703004EC18E /* Lato-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lato-Light.ttf"; path = "../../../../../../../Lato/Lato-Light.ttf"; sourceTree = "<group>"; };
+		217C034E2246E703004EC18E /* Lato-Hairline.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lato-Hairline.ttf"; path = "../../../../../../../Lato/Lato-Hairline.ttf"; sourceTree = "<group>"; };
+		217C034F2246E703004EC18E /* Lato-BlackItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lato-BlackItalic.ttf"; path = "../../../../../../../Lato/Lato-BlackItalic.ttf"; sourceTree = "<group>"; };
 		21AD575B22423F18007F2776 /* InstagramLike.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InstagramLike.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		21AD575E22423F18007F2776 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		21AD576022423F18007F2776 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -47,6 +77,8 @@
 		21AD577A22423F19007F2776 /* InstagramLikeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = InstagramLikeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		21AD577E22423F19007F2776 /* InstagramLikeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstagramLikeUITests.swift; sourceTree = "<group>"; };
 		21AD578022423F19007F2776 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		21CA1F8122564629009999D7 /* Constante.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constante.swift; sourceTree = "<group>"; };
+		21CA1F862256D14F009999D7 /* RequestApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestApi.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +109,8 @@
 		217C02E22246C8E0004EC18E /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				21AD576722423F19007F2776 /* LaunchScreen.storyboard */,
+				21AD576222423F18007F2776 /* Main.storyboard */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -91,8 +125,39 @@
 		217C02E42246C918004EC18E /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				212C83B02249609900DE6CBF /* SigninController.swift */,
+				21083BEF224A7CE600A63429 /* LoginController.swift */,
+				21083BF1224A84CD00A63429 /* NavigationController.swift */,
 			);
 			path = Controllers;
+			sourceTree = "<group>";
+		};
+		217C03002246E490004EC18E /* Ressources */ = {
+			isa = PBXGroup;
+			children = (
+				217C03442246E6F4004EC18E /* Font */,
+				21CA1F8122564629009999D7 /* Constante.swift */,
+				21CA1F862256D14F009999D7 /* RequestApi.swift */,
+			);
+			path = Ressources;
+			sourceTree = "<group>";
+		};
+		217C03442246E6F4004EC18E /* Font */ = {
+			isa = PBXGroup;
+			children = (
+				217C03452246E703004EC18E /* Lato-Black.ttf */,
+				217C034F2246E703004EC18E /* Lato-BlackItalic.ttf */,
+				217C03482246E703004EC18E /* Lato-Bold.ttf */,
+				217C03492246E703004EC18E /* Lato-BoldItalic.ttf */,
+				217C034E2246E703004EC18E /* Lato-Hairline.ttf */,
+				217C034C2246E703004EC18E /* Lato-HairlineItalic.ttf */,
+				217C03462246E703004EC18E /* Lato-Italic.ttf */,
+				217C034D2246E703004EC18E /* Lato-Light.ttf */,
+				217C034A2246E703004EC18E /* Lato-LightItalic.ttf */,
+				217C034B2246E703004EC18E /* Lato-Regular.ttf */,
+				217C03472246E703004EC18E /* OFL.txt */,
+			);
+			path = Font;
 			sourceTree = "<group>";
 		};
 		21AD575222423F18007F2776 = {
@@ -118,14 +183,13 @@
 		21AD575D22423F18007F2776 /* InstagramLike */ = {
 			isa = PBXGroup;
 			children = (
+				217C03002246E490004EC18E /* Ressources */,
 				217C02E42246C918004EC18E /* Controllers */,
 				217C02E32246C911004EC18E /* Models */,
 				217C02E22246C8E0004EC18E /* Views */,
 				21AD575E22423F18007F2776 /* AppDelegate.swift */,
 				21AD576022423F18007F2776 /* ViewController.swift */,
-				21AD576222423F18007F2776 /* Main.storyboard */,
 				21AD576522423F19007F2776 /* Assets.xcassets */,
-				21AD576722423F19007F2776 /* LaunchScreen.storyboard */,
 				21AD576A22423F19007F2776 /* Info.plist */,
 			);
 			path = InstagramLike;
@@ -253,8 +317,19 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				217C03592246E703004EC18E /* Lato-Hairline.ttf in Resources */,
+				217C03532246E703004EC18E /* Lato-Bold.ttf in Resources */,
+				217C035A2246E703004EC18E /* Lato-BlackItalic.ttf in Resources */,
+				217C03522246E703004EC18E /* OFL.txt in Resources */,
+				217C03512246E703004EC18E /* Lato-Italic.ttf in Resources */,
+				217C03582246E703004EC18E /* Lato-Light.ttf in Resources */,
+				217C03542246E703004EC18E /* Lato-BoldItalic.ttf in Resources */,
+				217C03502246E703004EC18E /* Lato-Black.ttf in Resources */,
 				21AD576922423F19007F2776 /* LaunchScreen.storyboard in Resources */,
+				217C03572246E703004EC18E /* Lato-HairlineItalic.ttf in Resources */,
 				21AD576622423F19007F2776 /* Assets.xcassets in Resources */,
+				217C03562246E703004EC18E /* Lato-Regular.ttf in Resources */,
+				217C03552246E703004EC18E /* Lato-LightItalic.ttf in Resources */,
 				21AD576422423F18007F2776 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -281,6 +356,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				21AD576122423F18007F2776 /* ViewController.swift in Sources */,
+				21083BF0224A7CE600A63429 /* LoginController.swift in Sources */,
+				21083BF2224A84CD00A63429 /* NavigationController.swift in Sources */,
+				21CA1F8222564629009999D7 /* Constante.swift in Sources */,
+				212C83B12249609900DE6CBF /* SigninController.swift in Sources */,
+				21CA1F872256D14F009999D7 /* RequestApi.swift in Sources */,
 				21AD575F22423F18007F2776 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
